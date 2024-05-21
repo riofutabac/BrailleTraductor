@@ -33,9 +33,12 @@ body {
 
 .container .card {
     flex: 1;
-    padding: 30px;
+    padding: 30px 30px 0px 30px;
     border-radius: 20px;
     background-color: var(--light-bg-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .card .from {
@@ -125,7 +128,10 @@ body {
 }
 
 .container .text-area {
-    position: relative;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .container textarea {
@@ -139,13 +145,103 @@ body {
     color: var(--text-color);
     font-size: 18px;
     font-family: "Poppins", sans-serif;
+    flex-grow: 1;
 }
   
 .container .text-area .chars {
-    position: absolute;
-    bottom: 0;
-    right: 0;
+    text-align: right;
     padding: 10px;
     font-size: 0.8rem;
     color: var(--light-text-color);
 }
+
+.upload-title {
+    appearance: none;
+    background-color: transparent;
+    border: 0.125em solid #1A1A1A;
+    border-radius: 0.9375em;
+    box-sizing: border-box;
+    color: #3B3B3B;
+    cursor: pointer;
+    display:flex;
+    align-items: center;
+    font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-size: 16px;
+    font-weight: 600;
+    line-height: normal;
+    margin: 0;
+    min-height: 3.75em;
+    min-width: 0;
+    outline: none;
+    padding: 1em 2.3em;
+    text-align: center;
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    will-change: transform;
+}
+
+.upload-title:hover {
+    color: #fff;
+    background-color: #1A1A1A;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+}
+
+.upload-title:active {
+    box-shadow: none;
+    transform: translateY(0);
+}
+
+.upload-title:disabled {
+    pointer-events: none;
+}
+
+.upload-title ion-icon {
+    margin-right: 10px; 
+}
+
+.container .card-buttom {
+    padding: 30px 0px;
+    border-top: 2px solid var(--bg-color);
+    display: flex; 
+    justify-content: center; 
+}
+
+.swap-position {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 5px solid var(--bg-color);
+    transition: all 0.3s ease;
+    color: var(--primary-text-color);
+    background-color: var(--primary-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.swap-position ion-icon {
+    font-size: 30px;
+    transition: all 0.3s ease;
+}
+
+.swap-position:hover {
+    transform: translateX(-50%) scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.swap-position:active {
+    transform: translateX(-50%) scale(0.95);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
