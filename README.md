@@ -12,7 +12,7 @@ Este proyecto es un traductor de Braille que permite convertir texto a Braille y
 ## Tecnologías Utilizadas
 
 - React
-- Docker
+- Python
 
 ## Instalación y Uso
 
@@ -35,9 +35,7 @@ cd my-app
 ```
 Construye la imagen de Docker:
 ```
-
 docker build -t tu-usuario/my-app .
-
 ```
 Ejecuta la imagen de Docker:
 ```
