@@ -1,55 +1,58 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Traductor.css';
+import { chevronDownOutline } from 'ionicons/icons';
 
 const Traductor = () => {
-    const [inputText, setInputText] = React.useState('');
-    const [output, setOutput] = React.useState('es');
-    const [outputText, setOutputText] = React.useState('');
+    const [inputText, setInputText] = useState('');
+    const [outputText, setOutputText] = useState('');
+    const [dropdownActive, setDropdownActive] = useState(false);
+    const [inputLanguage, setInputLanguage] = useState('Español');
+
+    const toggleDropdown = () => {
+        setDropdownActive(!dropdownActive);
+    };
 
     const traducir = async () => {
-    }
+
+    };
 
     return (
-        <section className="traductor">
-            <div className="row-wrapper">
-                <div className="translator-container input-lang">
-                    <div className="top-row">
-                        <button
-                            className="btn btn-primary btn-translate"
-                            onClick={traducir}
-                        >
-                            Traducir
-                        </button>
+        <section className="container">
+            <div className="card input-wrapper">
+                <div className="from">
+                    <span className="heading">Desde:</span>
+                    <div className={`dropdown-container ${dropdownActive ? 'active' : ''}`} id="input-language">
+                        <div className="dropdown-toggle" onClick={toggleDropdown}>
+                            <span className='selected-language'>{inputLanguage}</span>
+                        </div>
+                        <ul className="dropdown-menu">
+                            <li className={`option ${inputLanguage === 'English' ? 'active' : ''}`} onClick={() => setInputLanguage('English')}>English</li>
+                            <li className={`option ${inputLanguage === 'Español' ? 'active' : ''}`} onClick={() => setInputLanguage('Español')}>Español</li>
+                        </ul>
+                        <div className='text-area'>
+                            <textarea
+                                placeholder='Escribe algo...'
+                                value={inputText}
+                                onChange={(e) => setInputText(e.target.value)}
+                                id="input-text" cols="30" rows="10"></textarea>
+                        </div>
                     </div>
-                    <form className="input-form">
-                        <textarea
-                            className="text-box"
-                            placeholder="Ingrese el texto aquí..."
-                            onChange={e => setInputText(e.target.value)}
-                        >
-                        </textarea>
-                    </form>
                 </div>
-                <div className="translator-container output-lang">
-                    <div className="top-row">
-                        <select
-                            name="languages"
-                            id="languages"
-                            className="form-select form-select-sm"
-                            onChange={e => setOutput(e.target.value)}
-                        >
-                            <option value="es">Español</option>
-                            <option value="en">Inglés</option>
-                            <option value="braille">Braille</option>
-                        </select>
-                    </div>
-                    <p className="text-box output-box">
-                        {outputText}
-                    </p>
+            </div>
+            <div className='center'>
+                <div className="swap-position" onClick={traducir}>
+                    <ion-icon name={chevronDownOutline}></ion-icon>
                 </div>
+            </div>
+            <div className="card output-wrapper">
+                <textarea
+                    placeholder='Traducción...'
+                    value={outputText}
+                    readOnly
+                    cols="30" rows="10"></textarea>
             </div>
         </section>
     );
-}
+};
 
 export default Traductor;
