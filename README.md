@@ -6,7 +6,6 @@ Este proyecto es un traductor de Braille que permite convertir texto a Braille y
 
 - Traducción de texto a Braille.
 - Traducción de Braille a texto.
-- Escaneo de texto Braille desde una imagen y su traducción.
 - Exportación de traducciones a PDF.
 
 ## Tecnologías Utilizadas
