@@ -25,12 +25,15 @@ body {
 
 .container {
     position: relative;
-    width: 1200px;
-    padding: 0 20px;
+    width: 100%; /* Ajustar para que ocupe el ancho completo de App */
+    max-width: 1200px; /* Mantiene un máximo de ancho */
+    padding-top: 60px; /* Ajustar según la altura de tu cabecera */
     display: flex;
     gap: 10px;
+    justify-content: center; /* Centra el contenido horizontalmente */
+    margin: auto; /* Alinea todo el contenedor en el centro verticalmente */
+    overflow: hidden; /* Evita desbordamientos indeseados */
 }
-
 .container .card {
     flex: 1;
     padding: 30px 30px 0px 30px;

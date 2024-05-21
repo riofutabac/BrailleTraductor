@@ -36,3 +36,25 @@
     transform: rotate(360deg);
   }
 }
+
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh; /* Establecer la altura de la ventana gráfica */
+  display: flex;
+  flex-direction: column; /* Cambia la dirección del flex a columna */
+  justify-content: flex-start; /* Alinea el contenido desde el principio */
+  align-items: center; /* Centra el contenido horizontalmente */
+  background-color: var(--bg-color);
+}
+
+.App {
+  width: 100%; /* Ocupa todo el ancho */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: auto; /* Permite desplazamiento si el contenido es muy grande */
+  flex-grow: 1;
+}
