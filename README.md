@@ -12,7 +12,6 @@ Este proyecto es un traductor de Braille que permite convertir texto a Braille y
 ## Tecnologías Utilizadas
 
 - React
-- Python
 
 ## Instalación y Uso
 
