@@ -102,6 +102,7 @@ const Traductor = () => {
                         id="output-text" cols="30" rows="10"></textarea>
                 </div>
             </div>
+
         </section>
     );
 };
