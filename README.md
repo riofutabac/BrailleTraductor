@@ -6,19 +6,13 @@ Este proyecto es un traductor de Braille que permite convertir texto a Braille y
 
 - Traducción de texto a Braille.
 - Traducción de Braille a texto.
-- Escaneo de texto Braille desde una imagen y su traducción.
 - Exportación de traducciones a PDF.
 
 ## Tecnologías Utilizadas
 
 - React
-- Docker
 
 ## Instalación y Uso
-
-### Instalación de Docker
-
-Para ejecutar la aplicación en un contenedor Docker, primero asegúrate de tener Docker instalado en tu sistema. Puedes encontrar instrucciones de instalación para tu sistema operativo en [Docker Documentation](https://docs.docker.com/get-docker/).
 
 ### Clonar el Repositorio
 
@@ -35,9 +29,7 @@ cd my-app
 ```
 Construye la imagen de Docker:
 ```
-
 docker build -t tu-usuario/my-app .
-
 ```
 Ejecuta la imagen de Docker:
 ```
