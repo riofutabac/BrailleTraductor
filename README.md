@@ -16,10 +16,6 @@ Este proyecto es un traductor de Braille que permite convertir texto a Braille y
 
 ## Instalación y Uso
 
-### Instalación de Docker
-
-Para ejecutar la aplicación en un contenedor Docker, primero asegúrate de tener Docker instalado en tu sistema. Puedes encontrar instrucciones de instalación para tu sistema operativo en [Docker Documentation](https://docs.docker.com/get-docker/).
-
 ### Clonar el Repositorio
 
 ```
