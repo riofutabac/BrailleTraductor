@@ -5,6 +5,7 @@
     --text-color: #111116;
     --light-text-color: #cdccd1;
     --primary-text-color: #fff;
+    --color-buttom:#1A1A1A;
 }
 
 * {
@@ -14,27 +15,21 @@
     font-family: "Poppins", sans-serif;
 }
 
-body {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-color);
-    background-color: var(--bg-color);
-}
 
-.container {
+
+.cuerpo-container {
     position: relative;
-    width: 100%; /* Ajustar para que ocupe el ancho completo de App */
-    max-width: 1200px; /* Mantiene un máximo de ancho */
-    padding-top: 60px; /* Ajustar según la altura de tu cabecera */
+    width: 100%; 
+    max-width: 1200px; 
+    padding-top: 60px; 
+    padding-bottom: 60px; /* Agregar un padding en la parte inferior */
     display: flex;
     gap: 10px;
-    justify-content: center; /* Centra el contenido horizontalmente */
-    margin: auto; /* Alinea todo el contenedor en el centro verticalmente */
-    overflow: hidden; /* Evita desbordamientos indeseados */
+    justify-content: center; 
+    margin: auto; 
+    overflow: hidden; 
 }
-.container .card {
+.cuerpo-container .card {
     flex: 1;
     padding: 30px 30px 0px 30px;
     border-radius: 20px;
@@ -130,14 +125,14 @@ body {
     background-color: var(--primary-color);
 }
 
-.container .text-area {
+.cuerpo-container .text-area {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.container textarea {
+.cuerpo-container textarea {
     width: 100%;
     padding: 20px;
     margin: 10px 0;
@@ -151,7 +146,7 @@ body {
     flex-grow: 1;
 }
   
-.container .text-area .chars {
+.cuerpo-container .text-area .chars {
     text-align: right;
     padding: 10px;
     font-size: 0.8rem;
@@ -161,7 +156,7 @@ body {
 .upload-title {
     appearance: none;
     background-color: transparent;
-    border: 0.125em solid #1A1A1A;
+    border: 0.125em solid var(--color-buttom);
     border-radius: 0.9375em;
     box-sizing: border-box;
     color: #3B3B3B;
@@ -188,7 +183,7 @@ body {
 
 .upload-title:hover {
     color: #fff;
-    background-color: #1A1A1A;
+    background-color: var(--color-buttom);
     box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
     transform: translateY(-2px);
 }
@@ -206,7 +201,7 @@ body {
     margin-right: 10px; 
 }
 
-.container .card-buttom {
+.cuerpo-container .card-buttom {
     padding: 30px 0px;
     border-top: 2px solid var(--bg-color);
     display: flex; 
@@ -228,13 +223,14 @@ body {
     border: 5px solid var(--bg-color);
     transition: all 0.3s ease;
     color: var(--primary-text-color);
-    background-color: var(--primary-color);
+    background-color:  var(--color-buttom);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .swap-position ion-icon {
     font-size: 30px;
     transition: all 0.3s ease;
+    
 }
 
 .swap-position:hover {
@@ -245,6 +241,7 @@ body {
 .swap-position:active {
     transform: translateX(-50%) scale(0.95);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
 }
 
 

@@ -43,7 +43,7 @@ const Traductor = () => {
     };
 
     return (
-        <section className="container">
+        <section className="cuerpo-container">
             <div className="card input-wrapper">
                 <div className="from">
                     <span className="heading">Desde:</span>
