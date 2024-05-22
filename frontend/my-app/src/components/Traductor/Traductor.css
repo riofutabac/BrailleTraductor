@@ -15,14 +15,7 @@
     font-family: "Poppins", sans-serif;
 }
 
-body {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-color);
-    background-color: var(--bg-color);
-}
+
 
 .cuerpo-container {
     position: relative;
@@ -132,7 +125,7 @@ body {
     background-color: var(--primary-color);
 }
 
-.container .text-area {
+.cuerpo-container .text-area {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
