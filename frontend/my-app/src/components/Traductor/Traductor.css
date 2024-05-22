@@ -24,18 +24,19 @@ body {
     background-color: var(--bg-color);
 }
 
-.container {
+.cuerpo-container {
     position: relative;
-    width: 100%; /* Ajustar para que ocupe el ancho completo de App */
-    max-width: 1200px; /* Mantiene un máximo de ancho */
-    padding-top: 60px; /* Ajustar según la altura de tu cabecera */
+    width: 100%; 
+    max-width: 1200px; 
+    padding-top: 60px; 
+    padding-bottom: 60px; /* Agregar un padding en la parte inferior */
     display: flex;
     gap: 10px;
-    justify-content: center; /* Centra el contenido horizontalmente */
-    margin: auto; /* Alinea todo el contenedor en el centro verticalmente */
-    overflow: hidden; /* Evita desbordamientos indeseados */
+    justify-content: center; 
+    margin: auto; 
+    overflow: hidden; 
 }
-.container .card {
+.cuerpo-container .card {
     flex: 1;
     padding: 30px 30px 0px 30px;
     border-radius: 20px;
@@ -138,7 +139,7 @@ body {
     justify-content: space-between;
 }
 
-.container textarea {
+.cuerpo-container textarea {
     width: 100%;
     padding: 20px;
     margin: 10px 0;
@@ -152,7 +153,7 @@ body {
     flex-grow: 1;
 }
   
-.container .text-area .chars {
+.cuerpo-container .text-area .chars {
     text-align: right;
     padding: 10px;
     font-size: 0.8rem;
@@ -207,7 +208,7 @@ body {
     margin-right: 10px; 
 }
 
-.container .card-buttom {
+.cuerpo-container .card-buttom {
     padding: 30px 0px;
     border-top: 2px solid var(--bg-color);
     display: flex; 
