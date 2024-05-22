@@ -17,3 +17,13 @@ body {
     color: var(--text-color);
     background-color: var(--bg-color);
 }
+
+body.dark{
+    --primary-color: #356aff;
+    --bg-color: #1A1A1A;
+    --light-bg-color: #fff;
+    --text-color: #fff;
+    --light-text-color: #cdccd1;
+    --primary-text-color: #fff;
+    --color-buttom:#1A1A1A;
+}
