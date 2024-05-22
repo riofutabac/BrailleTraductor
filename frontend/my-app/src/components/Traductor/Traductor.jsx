@@ -96,7 +96,7 @@ const Traductor = () => {
                 </div>
                 <div className='text-area'>
                     <textarea
-                        placeholder='Traducción...'
+                        placeholder='TraducDción...'
                         value={outputText}
                         onChange={(e) => setOutputText(e.target.value)}
                         id="output-text" cols="30" rows="10"></textarea>
