@@ -7,7 +7,7 @@ import './App.css';
 
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [showTraductor, setShowTraductor] = useState(true);
+  const [option, setOption] = useState('Traducir texto');
 
   useEffect(() => {
     const body = document.body;
@@ -23,18 +23,14 @@ const App = () => {
   };
 
   const handleOptionClick = (option) => {
-    if (option === 'Traducir texto') {
-      setShowTraductor(true);
-    } else {
-      setShowTraductor(false);
-    }
+    setOption(option);
   };
 
   return (
     <div className='App'>
       <NavBar toggleDarkMode={toggleDarkMode} />
       <Option onOptionClick={handleOptionClick} />
-      {showTraductor && <Traductor />}
+      <Traductor option={option} />
     </div>
   );
 };

@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import './Traductor.css';
-import Option from '../Options/Option';
 
-const Traductor = () => {
+const Traductor = ({ option }) => {
     const [inputText, setInputText] = useState('');
     const [outputText, setOutputText] = useState('');
     const [inputDropdownActive, setInputDropdownActive] = useState(false);
@@ -39,14 +38,15 @@ const Traductor = () => {
         setOutputLanguage(tempInputLanguage);
     };
 
-    const traducir = async () => {
-        // Tu lógica de traducción aquí
+    const handleInputChange = (e) => {
+        const text = e.target.value;
+        if (text.length <= 5000) {
+            setInputText(text);
+        }
     };
 
     return (
-        
         <section className="cuerpo-container">
-            
             <div className="card input-wrapper">
                 <div className="from">
                     <span className="heading">Desde:</span>
@@ -63,25 +63,34 @@ const Traductor = () => {
                     </div>
                 </div>
                 <div className='text-area'>
-                    <textarea
-                        placeholder='Escribe algo...'
-                        value={inputText}
-                        onChange={(e) => setInputText(e.target.value)}
-                        id="input-text" cols="30" rows="10"></textarea>
-                    <div className='chars'><span id='input-chars'>{inputText.length}</span>/5000 </div>
-                </div>
-                <div className='card-buttom'>
-                    <label htmlFor='file-upload' className='upload-title'>
-                        <ion-icon name="cloud-upload-outline"></ion-icon>
-                        <p>Subir archivo</p>
-                        <input type='file' id='file-upload' hidden />
-                    </label>
+                    {option === 'Traducir texto' && (
+                        <>
+                            <textarea
+                                placeholder='Escribe algo...'
+                                value={inputText}
+                                onChange={handleInputChange}
+                                id="input-text"
+                                cols="30"
+                                rows="10"
+                            ></textarea>
+                            <div className='chars'><span id='input-chars'>{inputText.length}</span>/5000 </div>
+                        </>
+                    )}
+                    {option === 'Archivo' && (
+                        <label htmlFor='file-upload' className='upload-title'>
+                            <ion-icon name="cloud-upload-outline"></ion-icon>
+                            <p>Subir archivo</p>
+                            <input type='file' id='file-upload' hidden />
+                        </label>
+                    )}
                 </div>
             </div>
             <div className='center'></div>
-            <div className='swap-position' onClick={swapLanguagesAndTexts}>
-                <ion-icon name="swap-horizontal-outline"></ion-icon>
-            </div>
+            {option === 'Traducir texto' && (
+                <div className='swap-position' onClick={swapLanguagesAndTexts}>
+                    <ion-icon name="swap-horizontal-outline"></ion-icon>
+                </div>
+            )}
             <div className="card output-wrapper">
                 <div className="from">
                     <span className="heading">A:</span>
@@ -105,7 +114,6 @@ const Traductor = () => {
                         id="output-text" cols="30" rows="10"></textarea>
                 </div>
             </div>
-
         </section>
     );
 };

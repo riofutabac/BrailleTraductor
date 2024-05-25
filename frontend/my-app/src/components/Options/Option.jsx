@@ -10,10 +10,10 @@ const Option = ({ onOptionClick }) => {
           <h3>Traducir texto</h3>
         </div>
       </div>
-      <div className="option" onClick={() => onOptionClick('Hola mundo')}>
-        <ion-icon name="globe-outline" size="large"></ion-icon>
+      <div className="option" onClick={() => onOptionClick('Archivo')}>
+        <ion-icon name="document-attach-outline" size="large"></ion-icon>
         <div>
-          <h3>Hola mundo</h3>
+          <h3>Archivo</h3>
         </div>
       </div>
     </div>
