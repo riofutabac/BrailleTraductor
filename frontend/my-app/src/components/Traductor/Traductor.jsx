@@ -45,6 +45,11 @@ const Traductor = ({ option }) => {
         }
     };
 
+    const copyToClipboard = () => {
+        navigator.clipboard.writeText(outputText);
+        alert('Texto copiado al portapapeles');
+    };
+
     return (
         <section className="cuerpo-container">
             <div className="card input-wrapper">
@@ -112,6 +117,14 @@ const Traductor = ({ option }) => {
                         value={outputText}
                         onChange={(e) => setOutputText(e.target.value)}
                         id="output-text" cols="30" rows="10"></textarea>
+                </div>
+                <div className="output-actions">
+                    <button onClick={copyToClipboard} disabled={!outputText}>
+                        <ion-icon name="clipboard-outline"></ion-icon>
+                    </button>
+                    <button disabled={outputLanguage !== 'Braille' || !outputText}>
+                        <ion-icon name="download-outline"></ion-icon>
+                    </button>
                 </div>
             </div>
         </section>

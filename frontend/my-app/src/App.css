@@ -29,13 +29,7 @@
   }
   
   body.dark {
-    --primary-color: #356aff;
-    --bg-color: #000000;
-    --light-bg-color: #333;
-    --text-color: #fff;
-    --light-text-color: #cdccd1;
-    --primary-text-color: #fff;
-    --color-buttom: #1A1A1A;
+
   }
   
   @media (max-width: 800px) {

@@ -23,7 +23,7 @@
     width: 100%; 
     max-width: 1200px; 
     padding-top:30px; 
-    padding-bottom: 60px; /* Agregar un padding en la parte inferior */
+    padding-bottom: 60px; 
     display: flex;
     gap: 10px;
     justify-content: center; 
@@ -246,3 +246,32 @@
 }
 
 
+.output-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 10px;
+}
+
+.output-actions button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.output-actions button:disabled {
+    background-color: transparent;
+    cursor: not-allowed;
+}
+
+.output-actions button ion-icon {
+    font-size: 20px;
+}
+
+.output-actions button:not(:disabled):hover {
+    background-color: var(--bg-color);
+    
+}
