@@ -28,7 +28,7 @@ const App = () => {
 
   return (
     <div className='App'>
-      <NavBar toggleDarkMode={toggleDarkMode} />
+      <NavBar toggleDarkMode={toggleDarkMode} isDarkMode={isDarkMode} />
       <Option onOptionClick={handleOptionClick} />
       <Traductor option={option} />
       <Footer />

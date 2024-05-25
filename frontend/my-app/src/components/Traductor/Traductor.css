@@ -1,12 +1,4 @@
-:root {
-    --primary-color: #356aff;
-    --bg-color: #f5f5f5;
-    --light-bg-color: #fff;
-    --text-color: #111116;
-    --light-text-color: #cdccd1;
-    --primary-text-color: #fff;
-    --color-buttom:#1A1A1A;
-}
+
 
 
 * {
@@ -224,26 +216,25 @@
     border: 5px solid var(--bg-color);
     transition: all 0.3s ease;
     color: var(--primary-text-color);
-    background-color:  var(--color-buttom);
+    background-color: var(--color-button);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.swap-position ion-icon {
+  }
+  
+  .swap-position ion-icon {
     font-size: 30px;
     transition: all 0.3s ease;
-    
-}
-
-.swap-position:hover {
+  }
+  
+  .swap-position:hover {
     transform: translateX(-50%) scale(1.1);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-}
-
-.swap-position:active {
+    color: var(--button-hover-color);
+  }
+  
+  .swap-position:active {
     transform: translateX(-50%) scale(0.95);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
-}
+  }
 
 
 .output-actions {
@@ -251,6 +242,7 @@
     justify-content: flex-end;
     gap: 10px;
     padding: 10px;
+
 }
 
 .output-actions button {
@@ -260,18 +252,20 @@
     padding: 10px;
     border-radius: 5px;
     transition: background-color 0.3s;
+    color: var(--text-color);
 }
 
 .output-actions button:disabled {
     background-color: transparent;
     cursor: not-allowed;
-}
 
+}
 .output-actions button ion-icon {
     font-size: 20px;
 }
 
 .output-actions button:not(:disabled):hover {
     background-color: var(--bg-color);
+
     
 }

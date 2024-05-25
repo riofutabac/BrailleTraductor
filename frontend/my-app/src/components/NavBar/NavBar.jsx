@@ -2,10 +2,14 @@ import React from 'react';
 import './NavBar.css';
 import logo_empresa from '../../assets/logo.png';
 
-const NavBar = ({ toggleDarkMode }) => {
+const NavBar = ({ toggleDarkMode, isDarkMode }) => {
   return (
     <div className='navbar'>
-      <img src={logo_empresa} alt='Ironhack logo' className='logo' />
+      <img 
+        src={logo_empresa} 
+        alt='Ironhack logo' 
+        className={`logo ${isDarkMode ? 'logo-dark' : ''}`} 
+      />
       <ul>
         <li><a href='#'>Home</a></li>
       </ul>
