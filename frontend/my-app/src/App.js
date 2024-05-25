@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import NavBar from './components/NavBar/NavBar';
 import Traductor from './components/Traductor/Traductor';
 import Footer from './components/Footer/Footer';
+import Option from './components/Options/Option';
 import './App.css';
 
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [showTraductor, setShowTraductor] = useState(true);
 
   useEffect(() => {
     const body = document.body;
@@ -20,11 +22,19 @@ const App = () => {
     setIsDarkMode(!isDarkMode);
   };
 
+  const handleOptionClick = (option) => {
+    if (option === 'Traducir texto') {
+      setShowTraductor(true);
+    } else {
+      setShowTraductor(false);
+    }
+  };
+
   return (
     <div className='App'>
       <NavBar toggleDarkMode={toggleDarkMode} />
-      <Traductor />
-      <Footer />
+      <Option onOptionClick={handleOptionClick} />
+      {showTraductor && <Traductor />}
     </div>
   );
 };

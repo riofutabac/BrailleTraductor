@@ -8,7 +8,6 @@ const NavBar = ({ toggleDarkMode }) => {
       <img src={logo_empresa} alt='Ironhack logo' className='logo' />
       <ul>
         <li><a href='#'>Home</a></li>
-        <li><a href='#'>PDF</a></li>
       </ul>
       <div className='btn-modo'>
         <div className="toggle">

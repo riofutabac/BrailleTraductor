@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Traductor.css';
+import Option from '../Options/Option';
 
 const Traductor = () => {
     const [inputText, setInputText] = useState('');
@@ -43,7 +44,9 @@ const Traductor = () => {
     };
 
     return (
+        
         <section className="cuerpo-container">
+        
             <div className="card input-wrapper">
                 <div className="from">
                     <span className="heading">Desde:</span>

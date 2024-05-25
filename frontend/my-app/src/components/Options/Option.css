@@ -1,0 +1,39 @@
+.options-container {
+  display: flex;
+  justify-content: flex-start; /* Cambiado a flex-start */
+  margin: 0px 84px;
+  padding: 20px 0px 0px 0px;
+
+  background-color: #f5f7f9;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.option:not(:last-child) {
+  margin-right: 20px;
+}
+
+.option h3 {
+  margin: 0 0 5px 10px;
+  font-size: 16px;
+}
+
+.option p {
+  margin: 0 0 0 10px;
+  color: #999999;
+  font-size: 14px;
+}
+
+.option:hover {
+  background-color: #e8f0fe;
+  border-color: #d1e3fd;
+}

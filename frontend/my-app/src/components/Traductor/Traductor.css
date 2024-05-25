@@ -246,35 +246,3 @@
 }
 
 
-@media (max-width: 800px) {
-    .container {
-      width: 100%;
-      margin-top: 20px;
-      flex-direction: column;
-    }
-    .container .card {
-      width: 100%;
-    }
-    .container .card .from {
-      margin-right: 0;
-    }
-    .container .card .to {
-      margin-left: 0;
-    }
-    .container .card .from,
-    .container .card .to {
-      flex-direction: column;
-    }
-  
-    .swap-position {
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-    .swap-position:hover {
-      transform: translate(-50%, -50%) scale(1.1);
-    }
-    .swap-position ion-icon {
-      transform: rotate(90deg);
-    }
-  }
