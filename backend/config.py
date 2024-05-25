@@ -1,3 +1,1 @@
-class Config:
-    DEBUG = True
-    # Configuraciones adicionales pueden ir aquí
+# Archivo para configuraciones generales del proyecto
