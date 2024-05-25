@@ -1,17 +1,14 @@
-import React from 'react'
-import './Footer.css'
+import React from 'react';
+import './Footer.css';
 
-function Footer() {
-    return (
-        <div className='footer-container'>
-            <section className='footer-subscription'>
-                <p className='footer-subscription-heading'>
-                    Gracias por ocupar nuestro traductor
-                </p>
+const Footer = () => {
+  return (
+    <footer className='footer'>
+      <p>© 2024 TechForge.</p>
+      <p>Universidad Politécnica Nacional</p>
 
-            </section>
-        </div>
-    )
+    </footer>
+  );
 }
 
-export default Footer
+export default Footer;
