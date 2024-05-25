@@ -46,7 +46,7 @@ const Traductor = () => {
     return (
         
         <section className="cuerpo-container">
-        
+            
             <div className="card input-wrapper">
                 <div className="from">
                     <span className="heading">Desde:</span>
@@ -99,7 +99,7 @@ const Traductor = () => {
                 </div>
                 <div className='text-area'>
                     <textarea
-                        placeholder='TraducDción...'
+                        placeholder='Traducción...'
                         value={outputText}
                         onChange={(e) => setOutputText(e.target.value)}
                         id="output-text" cols="30" rows="10"></textarea>

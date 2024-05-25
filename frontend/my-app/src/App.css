@@ -28,34 +28,50 @@
   }
   
   @media (max-width: 800px) {
-    .container {
+    .cuerpo-container {
       width: 100%;
       margin-top: 20px;
       flex-direction: column;
+      padding: 0px 0px 30px 0px;
     }
-    .container .card {
+  
+    .cuerpo-container .card {
       width: 100%;
     }
-    .container .card .from {
+  
+    .cuerpo-container .card .from {
       margin-right: 0;
     }
+  
     .container .card .to {
       margin-left: 0;
     }
-    .container .card .from,
-    .container .card .to {
+  
+    .cuerpo-container .card .from,
+    .cuerpo-container .card .to {
       flex-direction: column;
     }
   
     .swap-position {
-      top: 50%;
+      top: 56%;
       left: 50%;
       transform: translate(-50%, -50%);
     }
+  
     .swap-position:hover {
       transform: translate(-50%, -50%) scale(1.1);
     }
-    .swap-position ion-icon {
-      transform: rotate(90deg);
+  
+    .options-container {
+      align-items: center;
+      padding-left: 20px;
+      padding-right: 20px;
+
+    }
+  
+    .option {
+      width: 50%;
+      padding:auto;
+      text-align: center;
     }
   }

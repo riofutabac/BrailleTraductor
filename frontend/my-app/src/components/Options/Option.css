@@ -1,13 +1,15 @@
 .options-container {
   display: flex;
   justify-content: flex-start; /* Cambiado a flex-start */
-  margin: 0px 84px;
+  margin: auto;
   padding: 20px 0px 0px 0px;
-
+  width: 100%; 
+  max-width: 1200px; 
   background-color: #f5f7f9;
 }
 
 .option {
+  
   display: flex;
   align-items: center;
   padding: 10px;
