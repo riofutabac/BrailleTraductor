@@ -31,6 +31,7 @@ const App = () => {
       <NavBar toggleDarkMode={toggleDarkMode} />
       <Option onOptionClick={handleOptionClick} />
       <Traductor option={option} />
+      <Footer />
     </div>
   );
 };
