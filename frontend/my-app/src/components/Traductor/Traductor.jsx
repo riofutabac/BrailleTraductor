@@ -10,6 +10,7 @@ const Traductor = ({ option }) => {
     const [inputLanguage, setInputLanguage] = useState('Español');
     const [outputLanguage, setOutputLanguage] = useState('Braille');
     const [loading, setLoading] = useState(false);
+    const [pdfUrl, setPdfUrl] = useState('');
 
     const toggleInputDropdown = () => {
         setInputDropdownActive(!inputDropdownActive);
@@ -61,6 +62,22 @@ const Traductor = ({ option }) => {
         } catch (error) {
             console.error('Error translating text:', error);
             alert('Error al traducir el texto.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const generatePDF = async () => {
+        setLoading(true);
+        try {
+            const response = await axios.get(`http://localhost:8000/api/generate-pdf/${outputText}`, {
+                responseType: 'blob'
+            });
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            setPdfUrl(url);
+        } catch (error) {
+            console.error('Error generating PDF:', error);
+            alert('Error al generar el PDF.');
         } finally {
             setLoading(false);
         }
@@ -146,9 +163,16 @@ const Traductor = ({ option }) => {
                     <button onClick={copyToClipboard} disabled={!outputText}>
                         <ion-icon name="clipboard-outline"></ion-icon>
                     </button>
-                    <button disabled={!inputText || loading}>
-                        {loading ? 'Traduciendo...' : <ion-icon name="cloud-upload-outline"></ion-icon>}
+                    <button onClick={generatePDF} disabled={!outputText}>
+                        <ion-icon name="download-outline"></ion-icon>
                     </button>
+                    {pdfUrl && (
+                        <a href={pdfUrl} download="Traduccion_Braille.pdf">
+                            <button>
+                                Descargar PDF
+                            </button>
+                        </a>
+                    )}
                 </div>
             </div>
         </section>
