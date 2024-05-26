@@ -1,25 +1,31 @@
-from fpdf import FPDF
+from PIL import Image, ImageDraw, ImageFont
 import os
 
-class PDF(FPDF):
-    def header(self):
-        self.set_font('Arial', 'B', 12)
-        self.cell(0, 10, 'Traducción de Braille', 0, 1, 'C')
+def create_image_from_text(text):
+    # Crear una imagen en blanco
+    image = Image.new('RGB', (800, 600), color='white')
+    draw = ImageDraw.Draw(image)
+    
+    # Configurar la ruta absoluta de la fuente
+    font_path = os.path.join(os.path.dirname(__file__), 'fonts', 'DejaVuSansCondensed.ttf')
+    
+    # Cargar la fuente Braille
+    font = ImageFont.truetype(font_path, size=36)
+    
+    # Dibujar el texto en la imagen
+    draw.text((10, 10), text, font=font, fill='black')
+    
+    # Aplicar efecto espejo
+    image = image.transpose(Image.FLIP_LEFT_RIGHT)
+    
+    # Guardar la imagen temporalmente
+    image_path = 'text_image.png'
+    image.save(image_path)
+    
+    return image_path
 
-    def footer(self):
-        self.set_y(-15)
-        self.set_font('Arial', 'I', 8)
-        self.cell(0, 10, f'Page {self.page_no()}', 0, 0, 'C')
-
-def generate_pdf(text, filename="translation.pdf"):
-    pdf = PDF()
-    pdf.add_page()
-    pdf.set_font("Arial", size=12)
-    pdf.multi_cell(0, 10, text)
-
-    if not os.path.exists("generated_pdfs"):
-        os.makedirs("generated_pdfs")
-
-    filepath = os.path.join("generated_pdfs", filename)
-    pdf.output(filepath)
-    return filepath
+def convert_image_to_pdf(image_path):
+    image = Image.open(image_path)
+    pdf_path = image_path.replace('.png', '.pdf')
+    image.save(pdf_path, 'PDF', resolution=100.0)
+    return pdf_path
