@@ -1,6 +1,4 @@
 
-
-```markdown
 # Traductor Braille
 
 Este proyecto es un traductor de Braille que permite convertir texto a Braille y viceversa. Además, incluye funcionalidades para escanear texto Braille desde una imagen y exportar las traducciones a PDF.
@@ -10,12 +8,13 @@ Este proyecto es un traductor de Braille que permite convertir texto a Braille y
 - Traducción de texto a Braille.
 - Traducción de Braille a texto.
 - Exportación de traducciones a PDF.
+- Carga y escaneo de archivos de imagen con texto Braille.
 
 ## Tecnologías Utilizadas
 
 - React
-- FastAPI (Python)
-- Docker
+- Python
+- FastAPI
 
 ## Instalación y Uso
 
@@ -26,153 +25,69 @@ git clone https://github.com/tu-usuario/braille-translator.git
 cd braille-translator
 ```
 
-### Configurar el Entorno Virtual
-
-Para asegurar que las dependencias de Python se mantengan aisladas, se recomienda usar un entorno virtual.
-
-1. **Crear el entorno virtual:**
-
-   ```sh
-   python -m venv .env
-   ```
-
-2. **Activar el entorno virtual:**
-
-   - En Windows:
-
-     ```sh
-     .\.env\Scripts\activate
-     ```
-
-   - En macOS y Linux:
-
-     ```sh
-     source .env/bin/activate
-     ```
-
-3. **Instalar las dependencias:**
-
-   ```sh
-   pip install -r requirements.txt
-   ```
-
 ### Ejecutar la Aplicación Frontend con Docker
 
-Accede a la carpeta de la aplicación:
+1. Accede a la carpeta de la Aplicación:
+   ```
+   cd frontend
+   cd my-app
+   ```
 
-```sh
-cd frontend
-cd my-app
-```
+2. Construye la imagen de Docker:
+   ```
+   docker build -t tu-usuario/my-app .
+   ```
 
-Construye la imagen de Docker:
-
-```sh
-docker build -t tu-usuario/my-app .
-```
-
-Ejecuta la imagen de Docker:
-
-```sh
-docker run -d -p 3000:3000 tu-usuario/my-app
-```
+3. Ejecuta la imagen de Docker:
+   ```
+   docker run -d -p 3000:3000 tu-usuario/my-app
+   ```
 
 ### Ejecutar la Aplicación Backend
 
-1. **Asegúrate de estar en la raíz del proyecto:**
-
-   ```sh
-   cd ..
-   cd backend
+1. Crea un entorno virtual de Python:
+   ```
+   python3 -m venv env
+   source env/bin/activate
    ```
 
-2. **Inicia el servidor FastAPI:**
-
-   ```sh
-   uvicorn main:app --reload
+2. Instala las dependencias:
+   ```
+   pip install -r requirements.txt
    ```
 
-### Ejecutar Pruebas
+3. Inicia el servidor FastAPI:
+   ```
+   uvicorn app.main:app --reload
+   ```
 
-Para ejecutar las pruebas, asegúrate de que el entorno virtual esté activado y luego usa `pytest`:
-
-```sh
-pytest
-```
+El servidor FastAPI estará disponible en `http://localhost:8000`.
 
 ## Estructura del Proyecto
 
-```sh
-braille-translator/
-│
-├── app/
-│   ├── api/
-│   │   ├── __init__.py
-│   │   ├── routes.py
-│   ├── models/
-│   │   ├── __init__.py
-│   ├── services/
-│   │   ├── __init__.py
-│   │   ├── pdf_generator.py
-│   │   ├── translator.py
-│   └── __init__.py
-│
-├── frontend/
-│   ├── my-app/
-│   │   ├── src/
-│   │   │   ├── components/
-│   │   │   │   ├── NavBar/
-│   │   │   │   ├── Traductor/
-│   │   │   │   ├── Footer/
-│   │   │   │   ├── Options/
-│   │   │   ├── App.css
-│   │   │   ├── App.js
-│   │   └── public/
-│
-├── tests/
-│   ├── __init__.py
-│   ├── test_ocr.py
-│   ├── test_pdf_generator.py
-│   ├── test_translator.py
-│
-├── main.py
-├── requirements.txt
-└── README.md
-```
+### Frontend
 
-## Contribuir
+La aplicación frontend está construida con React y se encuentra en la carpeta `frontend/my-app`. Los principales componentes son:
 
-Para contribuir a este proyecto, sigue estos pasos:
+- `Traductor.js`: Contiene la lógica principal para la traducción de texto y la exportación a PDF.
+- `Option.js`: Componente que muestra las opciones de traducción de texto o carga de archivo.
+- `NavBar.js`: Barra de navegación con el logotipo y el botón de modo oscuro.
+- `Footer.js`: Pie de página con información de derechos de autor.
 
-1. **Crear una nueva rama basada en `features`:**
+### Backend
 
-   ```sh
-   git checkout features
-   git checkout -b nombre-de-tu-rama
-   ```
+El backend está construido con FastAPI y se encuentra en la carpeta `backend`. Los principales archivos son:
 
-2. **Hacer los cambios necesarios.**
-3. **Añadir los cambios y hacer un commit:**
+- `main.py`: Punto de entrada principal de la aplicación FastAPI.
+- `routes.py`: Define las rutas de la API para la traducción de texto y la generación de PDF.
+- `services/translator.py`: Contiene las funciones para la traducción de texto a Braille y viceversa.
+- `services/pdf_generator.py`: Contiene las funciones para generar imágenes a partir de texto Braille y convertirlas a PDF.
 
-   ```sh
-   git add .
-   git commit -m "Descripción de los cambios realizados"
-   ```
+## Contribución
 
-4. **Hacer push de la rama:**
+Si deseas contribuir a este proyecto, puedes seguir los siguientes pasos:
 
-   ```sh
-   git push origin nombre-de-tu-rama
-   ```
-
-5. **Crear un Pull Request en GitHub** desde `nombre-de-tu-rama` hacia `develop`.
-6. **Revisar y fusionar el Pull Request** en `develop`.
-7. **Probar los cambios** en `develop` y luego crear un Pull Request desde `develop` hacia `main`.
-8. **Revisar y fusionar el Pull Request** en `main`.
-
-## Licencia
-
-Este proyecto está bajo la Licencia [nombre de la licencia].
-```
-
-Este README proporciona una descripción clara y concisa de tu proyecto, sus funcionalidades, las tecnologías utilizadas, y las instrucciones detalladas para la instalación, ejecución y contribución al proyecto. Puedes copiar y pegar este contenido directamente en tu archivo `README.md` en GitHub.
+1. Haz un fork del repositorio.
+2. Crea una nueva rama con un nombre descriptivo para tu característica o corrección de errores.
+3. Realiza tus cambios y realiza commits descriptivos.
+4. Envía una solicitud de extracción (pull request) al repositorio principal.
