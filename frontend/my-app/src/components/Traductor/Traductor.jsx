@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './Traductor.css';
 
 const Traductor = ({ option }) => {
@@ -8,6 +9,7 @@ const Traductor = ({ option }) => {
     const [outputDropdownActive, setOutputDropdownActive] = useState(false);
     const [inputLanguage, setInputLanguage] = useState('Español');
     const [outputLanguage, setOutputLanguage] = useState('Braille');
+    const [loading, setLoading] = useState(false);
 
     const toggleInputDropdown = () => {
         setInputDropdownActive(!inputDropdownActive);
@@ -49,6 +51,28 @@ const Traductor = ({ option }) => {
         navigator.clipboard.writeText(outputText);
         alert('Texto copiado al portapapeles');
     };
+
+    const translateText = async (text) => {
+        setLoading(true);
+        try {
+            const direction = inputLanguage === 'Español' && outputLanguage === 'Braille' ? 'Braille' : 'Español';
+            const response = await axios.get(`http://localhost:8000/api/translate/${text}/${direction}`);
+            setOutputText(response.data.translated_text);
+        } catch (error) {
+            console.error('Error translating text:', error);
+            alert('Error al traducir el texto.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        if (inputText) {
+            translateText(inputText);
+        } else {
+            setOutputText('');
+        }
+    }, [inputText]);
 
     return (
         <section className="cuerpo-container">
@@ -122,8 +146,8 @@ const Traductor = ({ option }) => {
                     <button onClick={copyToClipboard} disabled={!outputText}>
                         <ion-icon name="clipboard-outline"></ion-icon>
                     </button>
-                    <button disabled={outputLanguage !== 'Braille' || !outputText}>
-                        <ion-icon name="download-outline"></ion-icon>
+                    <button disabled={!inputText || loading}>
+                        {loading ? 'Traduciendo...' : <ion-icon name="cloud-upload-outline"></ion-icon>}
                     </button>
                 </div>
             </div>
