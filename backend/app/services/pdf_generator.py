@@ -1,19 +1,25 @@
-from reportlab.lib.pagesizes import letter
-from reportlab.platypus import SimpleDocTemplate, Paragraph
-from reportlab.lib.styles import getSampleStyleSheet
+from fpdf import FPDF
 import os
 
-def generate_pdf(text, filename='Traduccion_Braille.pdf'):
-    styles = getSampleStyleSheet()
+class PDF(FPDF):
+    def header(self):
+        self.set_font('Arial', 'B', 12)
+        self.cell(0, 10, 'Traducción de Braille', 0, 1, 'C')
 
-    doc = SimpleDocTemplate(filename, pagesize=letter)
-    elements = []
+    def footer(self):
+        self.set_y(-15)
+        self.set_font('Arial', 'I', 8)
+        self.cell(0, 10, f'Page {self.page_no()}', 0, 0, 'C')
 
-    lines = text.split('\n')
+def generate_pdf(text, filename="translation.pdf"):
+    pdf = PDF()
+    pdf.add_page()
+    pdf.set_font("Arial", size=12)
+    pdf.multi_cell(0, 10, text)
 
-    for line in lines:
-        elements.append(Paragraph(line, styles['BodyText']))
+    if not os.path.exists("generated_pdfs"):
+        os.makedirs("generated_pdfs")
 
-    doc.build(elements)
-
-    return filename
+    filepath = os.path.join("generated_pdfs", filename)
+    pdf.output(filepath)
+    return filepath

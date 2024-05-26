@@ -67,19 +67,20 @@ const Traductor = ({ option }) => {
         }
     };
 
-    const generatePDF = async () => {
-        setLoading(true);
+    const downloadPDF = async () => {
         try {
-            const response = await axios.get(`http://localhost:8000/api/generate-pdf/${outputText}`, {
-                responseType: 'blob'
-            });
-            const url = window.URL.createObjectURL(new Blob([response.data]));
-            setPdfUrl(url);
+            const response = await fetch(`http://localhost:8000/api/generate-pdf/${encodeURIComponent(outputText)}`);
+            if (!response.ok) throw new Error('Error al generar el PDF');
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'translation.pdf';
+            document.body.appendChild(a); // we need to append the element to the dom -> otherwise it will not work in firefox
+            a.click();
+            a.remove();  //afterwards we remove the element again         
         } catch (error) {
-            console.error('Error generating PDF:', error);
-            alert('Error al generar el PDF.');
-        } finally {
-            setLoading(false);
+            console.error(error);
         }
     };
 
@@ -163,16 +164,9 @@ const Traductor = ({ option }) => {
                     <button onClick={copyToClipboard} disabled={!outputText}>
                         <ion-icon name="clipboard-outline"></ion-icon>
                     </button>
-                    <button onClick={generatePDF} disabled={!outputText}>
+                    <button onClick={downloadPDF} disabled={outputLanguage !== 'Braille' || !outputText}>
                         <ion-icon name="download-outline"></ion-icon>
                     </button>
-                    {pdfUrl && (
-                        <a href={pdfUrl} download="Traduccion_Braille.pdf">
-                            <button>
-                                Descargar PDF
-                            </button>
-                        </a>
-                    )}
                 </div>
             </div>
         </section>
