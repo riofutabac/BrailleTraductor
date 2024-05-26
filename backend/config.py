@@ -1,0 +1,1 @@
+# Archivo para configuraciones generales del proyecto
