@@ -21,24 +21,25 @@ secdict = {brailles[i]: codascii[i] for i in range(len(brailles))}
 
 def control_mayusculas_y_numeros(entry):
     modified = ""
-    last_was_space = True  # Para manejar el inicio de texto o después de un espacio.
-    
-    for i, char in enumerate(entry):
+    i = 0
+    while i < len(entry):
+        char = entry[i]
         if char.isdigit():
-            if last_was_space or (i > 0 and not entry[i-1].isdigit()):
-                # Si es el comienzo de un número nuevo.
+            if i == 0 or not entry[i-1].isdigit():
+                # Iniciar una nueva secuencia numérica
                 modified += '⠼'
             modified += maindict[char]
-            last_was_space = False
         elif char.isupper():
-            if last_was_space:
-                # Si es el comienzo de una palabra con mayúscula.
-                modified += '⠨'
+            if i == 0 or not entry[i-1].isupper() or entry[i-1] in ' .,;:':
+                # Iniciar una nueva secuencia de mayúsculas
+                if i + 1 < len(entry) and entry[i+1].isupper() and entry[i+1] not in ' .,;:':
+                    modified += '⠨⠨'  # Comienzo de palabras totalmente en mayúsculas
+                else:
+                    modified += '⠨'  # Comienzo de una palabra con inicial mayúscula
             modified += maindict[char.lower()]
-            last_was_space = False
         else:
-            modified += maindict.get(char, char)  # Mantener los caracteres no mapeados.
-            last_was_space = char == ' '
+            modified += maindict.get(char, char)  # Caracteres no alfabéticos o en minúsculas
+        i += 1
     return modified
 
 def tradBraille(entry):
@@ -51,16 +52,23 @@ def tradEsp(entry):
     while i < len(entry):
         char = entry[i]
         if char == '⠨':
-            i += 1
-            if i < len(entry) and entry[i] in secdict:
-                texto += secdict[entry[i]].upper()
+            if i + 1 < len(entry) and entry[i+1] == '⠨':
+                i += 2
+                while i < len(entry) and entry[i] not in ' .,;:':
+                    if entry[i] in secdict:
+                        texto += secdict[entry[i]].upper()
+                    i += 1
+                i -= 1  # Compensar el incremento del ciclo principal
+            else:
+                i += 1
+                if i < len(entry) and entry[i] in secdict:
+                    texto += secdict[entry[i]].upper()
         elif char == '⠼':
-            # Saltar el símbolo de número y continuar con los números.
             i += 1
             while i < len(entry) and entry[i] in secdict and entry[i].isdigit():
                 texto += secdict[entry[i]]
                 i += 1
-            i -= 1  # Ajuste porque el ciclo principal también incrementará `i`.
+            i -= 1  # Compensar el incremento del ciclo principal
         elif char in secdict:
             texto += secdict[char]
         else:
