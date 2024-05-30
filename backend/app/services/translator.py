@@ -3,14 +3,12 @@ import re
 # Arreglos de caracteres ASCII y su correspondiente en Braille.
 codascii = ['á', 'é', 'í', 'ó', 'ú', 'ü', '\n',
             ' ', '!', '¡', "'", '#', '+', '-', '*', '÷', '"', '(', ')',
-            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
             ':', ';', '.', '=', ',', '?', '¿', '@',
             'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'ñ', 'o', 'p', 'q',
             'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '[', ']', '^', '_']
 
 brailles = ['⠷', '⠮', '⠌', '⠬', '⠾', '⠳', '\n',
             ' ', '⠖', '⠖', '⠦', '⠼', '⠖', '⠤', '⠦', '⠲', "⠦", '⠣', '⠜',
-            '⠚', '⠁', '⠃', '⠉', '⠙', '⠑', '⠋', '⠛', '⠓', '⠊',
             '⠒', '⠆', '⠄', '⠶', '⠂', '⠢', '⠢', '⠈',
             '⠁', '⠃', '⠉', '⠙', '⠑', '⠋', '⠛', '⠓', '⠊', '⠚', '⠅', '⠇', '⠍', '⠝', '⠻', '⠕', '⠏', '⠟',
             '⠗', '⠎', '⠞', '⠥', '⠧', '⠺', '⠭', '⠽', '⠵', '⠣', '⠜', '⠘', '⠤']
@@ -35,7 +33,7 @@ def control_mayusculas_y_numeros(entry):
             if last_was_space or (i > 0 and entry[i-1] in ' ;:'):
                 # Iniciar una nueva secuencia numérica
                 modified += '⠼'
-            modified += maindict[char]
+            modified += numdict[char]
         elif char.isupper():
             if last_was_space:
                 # Comprobando si el siguiente caracter también es mayúscula
