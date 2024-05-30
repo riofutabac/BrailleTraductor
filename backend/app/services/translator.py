@@ -2,7 +2,7 @@ import re
 
 # Arreglos de caracteres ASCII y su correspondiente en Braille.
 codascii = ['á', 'é', 'í', 'ó', 'ú', 'ü', '\n',
-            ' ', '!', '¡', "'", '#', '+', '-', '*', '/', '"', '(', ')',
+            ' ', '!', '¡', "'", '#', '+', '-', '*', '÷', '"', '(', ')',
             '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
             ':', ';', '.', '=', ',', '?', '¿', '@',
             'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'ñ', 'o', 'p', 'q',
@@ -18,6 +18,12 @@ brailles = ['⠷', '⠮', '⠌', '⠬', '⠾', '⠳', '\n',
 # Diccionarios para mapear caracteres y Braille.
 maindict = {codascii[i]: brailles[i] for i in range(len(codascii))}
 secdict = {brailles[i]: codascii[i] for i in range(len(brailles))}
+
+# Diccionarios de conversión numérica
+numeros = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+braille = ['⠚', '⠁', '⠃', '⠉', '⠙', '⠑', '⠋', '⠛', '⠓', '⠊']
+numdict = {numeros[i]: braille[i] for i in range(len(numeros))}
+brailledict = {braille[i]: numeros[i] for i in range(len(braille))}
 
 def control_mayusculas_y_numeros(entry):
     modified = ""
@@ -50,6 +56,7 @@ def tradBraille(entry):
 
 def tradEsp(entry):
     texto = ""
+    numero = ""
     i = 0
     while i < len(entry):
         char = entry[i]
@@ -66,10 +73,13 @@ def tradEsp(entry):
                 texto += secdict[entry[i]].upper()
         elif char == '⠼':
             # Asegurar que sólo se traduzcan números
+            numero = ""
             i += 1
-            while i < len(entry) and entry[i] in secdict and secdict[entry[i]].isdigit():
-                texto += secdict[entry[i]]
+            while i < len(entry) and entry[i] in brailledict and brailledict[entry[i]].isdigit():
+                numero += brailledict[entry[i]]
                 i += 1
+            if numero:
+                texto += numero
             i -= 1
         elif char in secdict:
             texto += secdict[char]
