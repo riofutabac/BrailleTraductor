@@ -18,25 +18,25 @@ export const Teclado = () => {
     ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
     ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'ñ'],
     ['⭡_mayús','z', 'x', 'c', 'v', 'b', 'n', 'm', 'borrar'],
-    ['enter'],
-    [':', ';', '.', 'á', 'é', 'í', 'ó', 'ú', 'ü', 'enter'],
-    ['¡!', '@', '#', '^',  '*', '(', ')'],
-    ['"', "'", '+', '-', ], 
-    ['=', ',', '¿?', '_', 'espacio']
+    ['(', ')',':', ';', '.',',','espacio', 'enter'],
+    ['á', 'é', 'í', 'ó', 'ú', 'ü', '+', '-', '÷', '*'],
+    ['¡!', '@', '#', '^', '"', "'", '¿?', '_', '='],
   ];
 
   return (
-    <div className="keyboard">
-      {keys.map((row, rowIndex) => (
-        <div key={rowIndex} className="keyboard-row">
-          {row.map((key) => (
-            <button key={key} className="key">
-              <div className="braille-symbol">{charToBrailleMap[key.toLowerCase()] || key}</div>
-              <div className="ascii-symbol">{key}</div>
-            </button>
-          ))}
-        </div>
-      ))}
+    <div className='contenedorTeclado'>
+      <div className="keyboard">
+        {keys.map((row, rowIndex) => (
+          <div key={rowIndex} className="keyboard-row">
+            {row.map((key) => (
+              <button key={key} className="key">
+                <div className="braille-symbol">{charToBrailleMap[key.toLowerCase()] || key}</div>
+                <div className="ascii-symbol">{key}</div>
+              </button>
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
