@@ -5,6 +5,10 @@ import Footer from './components/Footer/Footer';
 import Option from './components/Options/Option';
 import './App.css';
 
+import { Teclado } from './components/Teclado/Teclado';
+
+
+
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [option, setOption] = useState('Traducir texto');
@@ -31,6 +35,7 @@ const App = () => {
       <NavBar toggleDarkMode={toggleDarkMode} isDarkMode={isDarkMode} />
       <Option onOptionClick={handleOptionClick} />
       <Traductor option={option} />
+      <Teclado/>
       <Footer />
     </div>
   );
