@@ -41,8 +41,10 @@
 }
 
 .key:active {
-  background-color: #f5f5f5;
+  background-color: #0000004d;
 }
+
+
 
 .braille-symbol {
   font-size: 30px;
