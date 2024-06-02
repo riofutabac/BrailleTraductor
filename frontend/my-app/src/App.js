@@ -4,15 +4,12 @@ import Traductor from './components/Traductor/Traductor';
 import Footer from './components/Footer/Footer';
 import Option from './components/Options/Option';
 import './App.css';
-
 import { Teclado } from './components/Teclado/Teclado';
-
-
-
 
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [option, setOption] = useState('Traducir texto');
+  const [inputText, setInputText] = useState(''); // Nuevo estado para manejar el texto del input
 
   useEffect(() => {
     const body = document.body;
@@ -35,8 +32,8 @@ const App = () => {
     <div className='App'>
       <NavBar toggleDarkMode={toggleDarkMode} isDarkMode={isDarkMode} />
       <Option onOptionClick={handleOptionClick} />
-      <Traductor option={option} />
-      <Teclado/>
+      <Traductor option={option} inputText={inputText} setInputText={setInputText} />
+      <Teclado setInputText={setInputText} inputText={inputText} />
       <Footer />
     </div>
   );
