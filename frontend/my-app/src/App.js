@@ -9,6 +9,7 @@ import { Teclado } from './components/Teclado/Teclado';
 
 
 
+
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [option, setOption] = useState('Traducir texto');

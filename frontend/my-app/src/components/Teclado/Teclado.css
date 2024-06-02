@@ -1,20 +1,40 @@
+:root {
+  /* Modo claro */
+  --teclado-bg-color: #ffff;
+  --teclado-key-bg-color: #f5f5f5;
+  --teclado-key-active-bg-color: #0000004d;
+  --teclado-text-color: #000000;
+  /* Modo oscuro */
+  --dark-teclado-bg-color: #1a1a1a;
+  --dark-teclado-key-bg-color: #000000;
+  --dark-teclado-key-active-bg-color: #009b935a;
+  --dark-teclado-text-color: #ffffff;
+}
+
+body.dark {
+  --teclado-bg-color: var(--dark-teclado-bg-color);
+  --teclado-key-bg-color: var(--dark-teclado-key-bg-color);
+  --teclado-key-active-bg-color: var(--dark-teclado-key-active-bg-color);
+  --teclado-text-color: var(--dark-teclado-text-color);
+}
+
 .keyboard {
   display: flex;
   flex-direction: column;
-  align-items: right;
   justify-content: center;
-  background-color: #ffff;
-  width: 100%;
+  background-color: var(--teclado-bg-color);
   padding: 30px;
   border-radius: 20px;
+  width: 750px;
+  margin:0px 0px 35px;
 }
 
 .contenedorTeclado{
-  display: flex;
   flex-direction: column;
   align-items: center;
   margin: 20px;
   margin-top: 0%;
+  
 }
 
 .keyboard-row {
@@ -22,7 +42,6 @@
   justify-content: center;
   margin-bottom: 5px
 }
-
 
 .key {
   display: flex;
@@ -33,18 +52,18 @@
   margin: 3px;
   border: 0px;
   border-radius: 9px;
-  background-color: #f5f5f5;
+  background-color: var(--teclado-key-bg-color);
   font-size: 16px;
   cursor: pointer;
   position: relative;
-  box-shadow: 140px 140px 240px 0 rgba(20, 20, 20, 0.3);
+  color: var(--teclado-text-color);
+  /*box-shadow: 7px 7px 12px 0 rgba(20, 20, 20, 0.3);*/
+
 }
 
 .key:active {
-  background-color: #0000004d;
+  background-color: var(--teclado-key-active-bg-color);
 }
-
-
 
 .braille-symbol {
   font-size: 30px;
@@ -61,5 +80,3 @@
   right: 5px;
   font-family: "Poppins", sans-serif;
 }
-
-
