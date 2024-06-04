@@ -25,22 +25,21 @@ body.dark {
   background-color: var(--teclado-bg-color);
   padding: 30px;
   border-radius: 20px;
-  width: 750px;
-  margin:0px 0px 35px;
+  width: 980px;
+  margin: 0px 0px 35px;
 }
 
-.contenedorTeclado{
+.contenedorTeclado {
   flex-direction: column;
   align-items: center;
   margin: 20px;
   margin-top: 0%;
-  
 }
 
 .keyboard-row {
   display: flex;
   justify-content: center;
-  margin-bottom: 5px
+  margin-bottom: 5px;
 }
 
 .key {
@@ -57,8 +56,6 @@ body.dark {
   cursor: pointer;
   position: relative;
   color: var(--teclado-text-color);
-  /*box-shadow: 7px 7px 12px 0 rgba(20, 20, 20, 0.3);*/
-
 }
 
 .key:active {
@@ -79,4 +76,44 @@ body.dark {
   bottom: 5px;
   right: 5px;
   font-family: "Poppins", sans-serif;
+}
+
+/* Media Query para responsive design */
+@media (max-width: 800px) {
+  .keyboard {
+    width: 100%;
+    padding: 15px ;
+    align-items: center;
+  }
+
+  .contenedorTeclado {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .keyboard-row {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 2px;
+    padding: 0px 10px;
+    width: 96%;
+
+  }
+
+  .key {
+    width: 10%;
+    padding: 8px 12px;
+    margin: 3px 3px;
+    font-size: 15px;
+
+  }
+
+  .braille-symbol {
+    font-size: 18px;
+  }
+
+  .ascii-symbol {
+    font-size: 14px;
+  }
 }
