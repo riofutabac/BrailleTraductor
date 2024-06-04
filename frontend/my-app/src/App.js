@@ -11,7 +11,7 @@ const App = () => {
 
   useEffect(() => {
     const body = document.body;
-    if (isDarkMode) {
+    if (!isDarkMode) { /*Modo negro inicial*/ 
       body.classList.add('dark');
     } else {
       body.classList.remove('dark');
