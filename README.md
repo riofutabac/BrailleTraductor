@@ -21,8 +21,8 @@ Este proyecto es un traductor de Braille que permite convertir texto a Braille y
 ### Clonar el Repositorio
 
 ```
-git clone https://github.com/tu-usuario/braille-translator.git
-cd braille-translator
+git clone https://github.com/riofutabac/BrailleTraductor.git
+
 ```
 
 ### Ejecutar la Aplicación Frontend con Docker
