@@ -5,13 +5,18 @@ import Footer from './components/Footer/Footer';
 import Option from './components/Options/Option';
 import './App.css';
 
+import { Teclado } from './components/Teclado/Teclado';
+
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [option, setOption] = useState('Traducir texto');
+  const [inputLanguage, setInputLanguage] = useState('Español');
+  const [outputLanguage, setOutputLanguage] = useState('Braille');
+  const [inputText, setInputText] = useState('');
 
   useEffect(() => {
     const body = document.body;
-    if (!isDarkMode) { /*Modo negro inicial*/ 
+    if (isDarkMode) {
       body.classList.add('dark');
     } else {
       body.classList.remove('dark');
@@ -26,11 +31,22 @@ const App = () => {
     setOption(option);
   };
 
+  const handleLanguageChange = (inputLang, outputLang) => {
+    setInputLanguage(inputLang);
+    setOutputLanguage(outputLang);
+  };
+
   return (
     <div className='App'>
       <NavBar toggleDarkMode={toggleDarkMode} isDarkMode={isDarkMode} />
       <Option onOptionClick={handleOptionClick} />
-      <Traductor option={option} />
+      <Traductor option={option} onLanguageChange={handleLanguageChange} inputText={inputText} setInputText={setInputText} />
+      <Teclado
+        setInputText={setInputText}
+        inputText={inputText}
+        inputLanguage={inputLanguage}
+        outputLanguage={outputLanguage}
+      />
       <Footer />
     </div>
   );
