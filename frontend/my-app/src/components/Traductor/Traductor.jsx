@@ -150,6 +150,7 @@ const Traductor = ({ option, inputText, setInputText }) => {
                                 <li className={`option ${outputLanguage === 'Braille' ? 'active' : ''}`} onClick={() => selectOutputLanguage('Braille')}>Braille</li>
                             </ul>
                         </div>
+
                     </div>
                     <div className='text-area'>
                         <textarea
@@ -173,5 +174,6 @@ const Traductor = ({ option, inputText, setInputText }) => {
             </section>
         );
     };
+
 
     export default Traductor;
