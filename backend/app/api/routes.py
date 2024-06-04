@@ -7,9 +7,9 @@ router = APIRouter()
 
 @router.get("/translate/{text}/{direction}")
 async def translate(text: str, direction: str):
-    if direction == "b": #Poner Braille
+    if direction == "Braille": #Poner Braille
         result = translator.tradBraille(text)
-    elif direction == "e": #Poner Español
+    elif direction == "Español": #Poner Español
         result = translator.tradEsp(text)
     else:
         raise HTTPException(status_code=400, detail="Invalid translation direction")
