@@ -39,9 +39,15 @@ def control_mayusculas_y_numeros(entry):
         elif char in '.,':
             # Permitir puntos y comas dentro de secuencias numéricas sin reiniciar el indicador de número
             if last_was_number:
-                modified += char
+                if char == '.':
+                    modified += '⠄'
+                elif char == ',':
+                    modified += '⠂'
             else:
-                modified += maindict.get(char, char)
+                if char == '.':
+                    modified += '⠄'
+                elif char == ',':
+                    modified += '⠂'
         elif char.isupper():
             if last_was_space:
                 # Comprobando si el siguiente carácter también es mayúscula
@@ -80,9 +86,11 @@ def tradEsp(entry):
                 texto += secdict[entry[i]].upper()
         elif char == '⠼':
             i += 1
-            while i < len(entry) and (entry[i] in brailledict or entry[i] in '.,'):
-                if entry[i] in '.,':
-                    texto += entry[i]  # Agregar el punto o la coma directamente
+            while i < len(entry) and (entry[i] in brailledict or entry[i] in '⠄⠂'):
+                if entry[i] == '⠄':
+                    texto += '.'
+                elif entry[i] == '⠂':
+                    texto += ','
                 elif entry[i] in brailledict:
                     texto += brailledict[entry[i]]
                 i += 1
