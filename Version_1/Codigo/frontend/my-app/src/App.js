@@ -3,7 +3,9 @@ import NavBar from './components/NavBar/NavBar';
 import Traductor from './components/Traductor/Traductor';
 import Footer from './components/Footer/Footer';
 import Option from './components/Options/Option';
+import { Helmet } from 'react-helmet';
 import './App.css';
+
 
 import { Teclado } from './components/Teclado/Teclado';
 
@@ -38,6 +40,9 @@ const App = () => {
 
   return (
     <div className='App'>
+      <Helmet>
+        <title>TechForge - Traductor Braille</title>
+      </Helmet>
       <NavBar toggleDarkMode={toggleDarkMode} isDarkMode={isDarkMode} />
       <Option onOptionClick={handleOptionClick} />
       <Traductor option={option} onLanguageChange={handleLanguageChange} inputText={inputText} setInputText={setInputText} />
