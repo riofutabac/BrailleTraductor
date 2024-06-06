@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/Traductor/Traductor.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/Traductor/Traductor.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// Traductor.js
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import './Traductor.css';
+
+/**
+ * Componente Traductor que maneja la lógica de traducción de texto entre Español y Braille.
+ * 
+ * @param {Object} props - Propiedades del componente.
+ * @param {string} props.option - Opción seleccionada ("Traducir texto" o "Archivo").
+ * @param {string} props.inputText - Texto de entrada para traducir.
+ * @param {Function} props.setInputText - Función para actualizar el texto de entrada.
+ * 
+ * @component
+ * @example
+ * const [inputText, setInputText] = useState('');
+ * const option = 'Traducir texto';
+ * 
+ * return (
+ *   &lt;Traductor option={option} inputText={inputText} setInputText={setInputText} />
+ * )
+ */
+const Traductor = ({ option, inputText, setInputText }) => {
+    const [outputText, setOutputText] = useState('');
+    const [inputDropdownActive, setInputDropdownActive] = useState(false);
+    const [outputDropdownActive, setOutputDropdownActive] = useState(false);
+    const [inputLanguage, setInputLanguage] = useState('Español');
+    const [outputLanguage, setOutputLanguage] = useState('Braille');
+    const [loading, setLoading] = useState(false);
+
+    const toggleInputDropdown = () => {
+        setInputDropdownActive(!inputDropdownActive);
+    };
+
+    const toggleOutputDropdown = () => {
+        setOutputDropdownActive(!outputDropdownActive);
+    };
+
+    const selectInputLanguage = (language) => {
+        setInputLanguage(language);
+        setInputDropdownActive(false);
+    };
+
+    const selectOutputLanguage = (language) => {
+        setOutputLanguage(language);
+        setOutputDropdownActive(false);
+    };
+
+    const swapLanguagesAndTexts = () => {
+        const tempInputText = inputText;
+        const tempInputLanguage = inputLanguage;
+
+        setInputText(outputText);
+        setInputLanguage(outputLanguage);
+
+        setOutputText(tempInputText);
+        setOutputLanguage(tempInputLanguage);
+    };
+
+    const handleInputChange = (e) => {
+        const text = e.target.value;
+        if (text.length &lt;= 5000) {
+            setInputText(text);
+        }
+    };
+
+    const copyToClipboard = () => {
+        navigator.clipboard.writeText(outputText);
+        alert('Texto copiado al portapapeles');
+    };
+
+    const translateText = async (text) => {
+        setLoading(true);
+        try {
+            const direction = inputLanguage === 'Español' &amp;&amp; outputLanguage === 'Braille' ? 'Braille' : 'Español';
+            const response = await axios.get(`http://localhost:8000/api/translate/${text}/${direction}`);
+            setOutputText(response.data.translated_text);
+        } catch (error) {
+            console.error('Error translating text:', error);
+            alert('Error al traducir el texto.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const downloadPDF = async () => {
+        try {
+            const response = await fetch(`http://localhost:8000/api/generate-pdf/${encodeURIComponent(outputText)}`);
+            if (!response.ok) throw new Error('Error al generar el PDF');
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'translation.pdf';
+            document.body.appendChild(a); // we need to append the element to the dom -> otherwise it will not work in firefox
+            a.click();
+            a.remove();  //afterwards we remove the element again         
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    useEffect(() => {
+        if (inputText) {
+            translateText(inputText);
+        } else {
+            setOutputText('');
+        }
+    }, [inputText]);
+
+    return (
+        &lt;section className="cuerpo-container">
+            &lt;div className="card input-wrapper">
+                &lt;div className="from">
+                    &lt;span className="heading">Desde:&lt;/span>
+                    &lt;div className={`dropdown-container ${inputDropdownActive ? 'active' : ''}`} id="input-language">
+                        &lt;div className="dropdown-toggle" onClick={toggleInputDropdown}>
+                            &lt;ion-icon name="globe-outline">&lt;/ion-icon>
+                            &lt;span className='selected-language'>{inputLanguage}&lt;/span>
+                            &lt;ion-icon name="chevron-down-outline">&lt;/ion-icon>
+                        &lt;/div>
+                        &lt;ul className="dropdown-menu">
+                            &lt;li className={`option ${inputLanguage === 'Español' ? 'active' : ''}`} onClick={() => selectInputLanguage('Español')}>Español&lt;/li>
+                            &lt;li className={`option ${inputLanguage === 'Braille' ? 'active' : ''}`} onClick={() => selectInputLanguage('Braille')}>Braille&lt;/li>
+                        &lt;/ul>
+                    &lt;/div>
+                &lt;/div>
+                &lt;div className='text-area'>
+                    {option === 'Traducir texto' &amp;&amp; (
+                        &lt;>
+                            &lt;textarea
+                                placeholder='Escribe algo...'
+                                value={inputText}
+                                onChange={handleInputChange}
+                                id="input-text"
+                                cols="30"
+                                rows="10"
+                            >&lt;/textarea>
+                            &lt;div className='chars'>&lt;span id='input-chars'>{inputText.length}&lt;/span>/5000 &lt;/div>
+                        &lt;/>
+                    )}
+                    {option === 'Archivo' &amp;&amp; (
+                        &lt;label htmlFor='file-upload' className='upload-title'>
+                            &lt;ion-icon name="cloud-upload-outline">&lt;/ion-icon>
+                            &lt;p>Subir archivo&lt;/p>
+                            &lt;input type='file' id='file-upload' hidden />
+                        &lt;/label>
+                    )}
+                &lt;/div>
+            &lt;/div>
+            &lt;div className='center'>&lt;/div>
+            {option === 'Traducir texto' &amp;&amp; (
+                &lt;div className='swap-position' onClick={swapLanguagesAndTexts}>
+                    &lt;ion-icon name="swap-horizontal-outline">&lt;/ion-icon>
+                &lt;/div>
+            )}
+            &lt;div className="card output-wrapper">
+                &lt;div className="from">
+                    &lt;span className="heading">A:&lt;/span>
+                    &lt;div className={`dropdown-container ${outputDropdownActive ? 'active' : ''}`} id="output-language">
+                        &lt;div className="dropdown-toggle" onClick={toggleOutputDropdown}>
+                            &lt;ion-icon name="globe-outline">&lt;/ion-icon>
+                            &lt;span className='selected-language'>{outputLanguage}&lt;/span>
+                            &lt;ion-icon name="chevron-down-outline">&lt;/ion-icon>
+                        &lt;/div>
+                        &lt;ul className="dropdown-menu">
+                            &lt;li className={`option ${outputLanguage === 'Español' ? 'active' : ''}`} onClick={() => selectOutputLanguage('Español')}>Español&lt;/li>
+                            &lt;li className={`option ${outputLanguage === 'Braille' ? 'active' : ''}`} onClick={() => selectOutputLanguage('Braille')}>Braille&lt;/li>
+                        &lt;/ul>
+                    &lt;/div>
+
+                &lt;/div>
+                &lt;div className='text-area'>
+                    &lt;textarea
+                        placeholder='Traducción...'
+                        value={outputText}
+                        onChange={(e) => setOutputText(e.target.value)}
+                        id="output-text"
+                        cols="30"
+                        rows="10"
+                    >&lt;/textarea>
+                &lt;/div>
+                &lt;div className="output-actions">
+                    &lt;button onClick={copyToClipboard} disabled={!outputText}>
+                        &lt;ion-icon name="clipboard-outline">&lt;/ion-icon>
+                    &lt;/button>
+                    &lt;button onClick={downloadPDF} disabled={outputLanguage !== 'Braille' || !outputText}>
+                        &lt;ion-icon name="download-outline">&lt;/ion-icon>
+                    &lt;/button>
+                &lt;/div>
+            &lt;/div>
+        &lt;/section>
+    );
+};
+
+
+export default Traductor;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#NavBar">NavBar</a></li><li><a href="global.html#Option">Option</a></li><li><a href="global.html#Teclado">Teclado</a></li><li><a href="global.html#Traductor">Traductor</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Wed Jun 05 2024 19:49:09 GMT-0500 (hora estándar de Colombia)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
