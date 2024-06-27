@@ -1,11 +1,17 @@
 .navbar {
+  position: fixed; /* Fija la barra de navegación */
+  top: 0; /* Alinea la barra en la parte superior */
+  left: 0; 
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: var(--light-bg-color);
-  padding: 10px; /* Agrega un padding para dar espacio */
+  padding: 10px;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Añade una sombra */
 }
+
 
 .logo {
   width: 90px;
