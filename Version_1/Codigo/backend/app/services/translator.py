@@ -1,6 +1,7 @@
 import re
-
-# Arreglos de caracteres ASCII y su correspondiente en Braille.
+"""
+Arreglos de caracteres ASCII y su correspondiente en Braille.
+"""
 codascii = ['á', 'é', 'í', 'ó', 'ú', 'ü', '\n',
             ' ', '!', '¡', "'", '#', '+', '-', '*', '÷', '"', '(', ')',
             ':', ';', '.', '=', ',', '?', '¿', '@',
@@ -13,17 +14,28 @@ brailles = ['⠷', '⠮', '⠌', '⠬', '⠾', '⠳', '\n',
             '⠁', '⠃', '⠉', '⠙', '⠑', '⠋', '⠛', '⠓', '⠊', '⠚', '⠅', '⠇', '⠍', '⠝', '⠻', '⠕', '⠏', '⠟',
             '⠗', '⠎', '⠞', '⠥', '⠧', '⠺', '⠭', '⠽', '⠵', '⠣', '⠜', '⠘', '⠤']
 
+"""
 # Diccionarios para mapear caracteres y Braille.
+"""
+
 maindict = {codascii[i]: brailles[i] for i in range(len(codascii))}
 secdict = {brailles[i]: codascii[i] for i in range(len(brailles))}
 
+"""
 # Diccionarios de conversión numérica
+"""
 numeros = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 braille = ['⠚', '⠁', '⠃', '⠉', '⠙', '⠑', '⠋', '⠛', '⠓', '⠊']
 numdict = {numeros[i]: braille[i] for i in range(len(numeros))}
 brailledict = {braille[i]: numeros[i] for i in range(len(braille))}
 
 def control_mayusculas_y_numeros(entry):
+    """
+    Controla la conversión de mayúsculas y números en la entrada de texto.
+
+    @param entry: El texto de entrada a procesar.
+    @return: El texto modificado con los controles de mayúsculas y números aplicados.
+    """
     modified = ""
     i = 0
     last_was_space = True
@@ -32,12 +44,12 @@ def control_mayusculas_y_numeros(entry):
         char = entry[i]
         if char.isdigit():
             if last_was_space or not last_was_number:
-                # Iniciar una nueva secuencia numérica
+            
                 modified += '⠼'
             modified += numdict[char]
             last_was_number = True
         elif char in '.,':
-            # Permitir puntos y comas dentro de secuencias numéricas sin reiniciar el indicador de número
+        
             if last_was_number:
                 if char == '.':
                     modified += '⠄'
@@ -50,25 +62,37 @@ def control_mayusculas_y_numeros(entry):
                     modified += '⠂'
         elif char.isupper():
             if last_was_space:
-                # Comprobando si el siguiente carácter también es mayúscula
+                
                 if i + 1 < len(entry) and entry[i+1].isupper() and entry[i+1] not in ' .,;:':
-                    modified += '⠨⠨'  # Comienzo de palabras totalmente en mayúsculas
+                    modified += '⠨⠨' 
                 else:
-                    modified += '⠨'  # Comienzo de una palabra con inicial mayúscula
+                    modified += '⠨'  
             modified += maindict[char.lower()]
             last_was_number = False
         else:
-            modified += maindict.get(char, char)  # Caracteres no alfabéticos o en minúsculas
+            modified += maindict.get(char, char)  
             last_was_number = False
         last_was_space = char in ' ;:'
         i += 1
     return modified
 
 def tradBraille(entry):
-    entry = control_mayusculas_y_numeros(entry)  # Preprocesar mayúsculas y números.
+    """
+    Traduce un texto en español a Braille.
+
+    @param entry: El texto en español a traducir.
+    @return: El texto traducido a Braille.
+    """
+    entry = control_mayusculas_y_numeros(entry)  
     return entry
 
 def tradEsp(entry):
+    """
+    Traduce un texto en Braille a español.
+
+    @param entry: El texto en Braille a traducir.
+    @return: El texto traducido a español.
+    """
     texto = ""
     i = 0
     while i < len(entry):
@@ -101,3 +125,4 @@ def tradEsp(entry):
             texto += char
         i += 1
     return texto.strip()
+

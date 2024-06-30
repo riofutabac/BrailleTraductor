@@ -1,3 +1,4 @@
+// Teclado.js
 import React, { useState } from 'react';
 import './Teclado.css';
 
@@ -11,6 +12,21 @@ const charToBrailleMap = {
   '0': '⠚', '1': '⠁', '2': '⠃', '3': '⠉', '4': '⠙', '5': '⠑', '6': '⠋', '7': '⠛', '8': '⠓', '9': '⠊'
 };
 
+/**
+ * Componente Teclado que muestra un teclado virtual para ingresar texto Braille.
+ * 
+ * @param {Object} props - Propiedades del componente.
+ * @param {Function} props.setInputText - Función para actualizar el texto de entrada.
+ * @param {string} props.inputText - Texto actual de entrada.
+ * 
+ * @component
+ * @example
+ * const [inputText, setInputText] = useState('');
+ * 
+ * return (
+ *   <Teclado setInputText={setInputText} inputText={inputText} />
+ * )
+ */
 export const Teclado = ({ setInputText, inputText }) => {
   const [inNumberSequence, setInNumberSequence] = useState(false);
 
@@ -33,13 +49,13 @@ export const Teclado = ({ setInputText, inputText }) => {
       return;
     } else if (key === 'espacio') {
       updatedText += ' ';
-      setInNumberSequence(false); // end number sequence on space
+      setInNumberSequence(false); 
     } else if (key === 'enter') {
       updatedText += '\n';
-      setInNumberSequence(false); // end number sequence on enter
+      setInNumberSequence(false); 
     } else {
       if (charToBrailleMap[key.toLowerCase()]) {
-        if (key.match(/[0-9]/)) { // if the key is a number
+        if (key.match(/[0-9]/)) { 
           if (!inNumberSequence || inputText.endsWith(' ')) {
             updatedText += '⠼';
             setInNumberSequence(true);
@@ -47,11 +63,11 @@ export const Teclado = ({ setInputText, inputText }) => {
           updatedText += charToBrailleMap[key.toLowerCase()];
         } else {
           updatedText += charToBrailleMap[key.toLowerCase()];
-          setInNumberSequence(false); // end number sequence on non-number
+          setInNumberSequence(false); 
         }
       } else {
         updatedText += key;
-        setInNumberSequence(false); // end number sequence on non-braille char
+        setInNumberSequence(false); 
       }
     }
     setInputText(updatedText);

@@ -1,8 +1,26 @@
 // Traductor.js
+// Traductor.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Traductor.css';
 
+/**
+ * Componente Traductor que maneja la lógica de traducción de texto entre Español y Braille.
+ * 
+ * @param {Object} props - Propiedades del componente.
+ * @param {string} props.option - Opción seleccionada ("Traducir texto" o "Archivo").
+ * @param {string} props.inputText - Texto de entrada para traducir.
+ * @param {Function} props.setInputText - Función para actualizar el texto de entrada.
+ * 
+ * @component
+ * @example
+ * const [inputText, setInputText] = useState('');
+ * const option = 'Traducir texto';
+ * 
+ * return (
+ *   <Traductor option={option} inputText={inputText} setInputText={setInputText} />
+ * )
+ */
 /**
  * Componente Traductor que maneja la lógica de traducción de texto entre Español y Braille.
  * 
@@ -178,6 +196,12 @@ const Traductor = ({ option, inputText, setInputText }) => {
                             <li className={`option ${outputLanguage === 'Braille' ? 'active' : ''}`} onClick={() => selectOutputLanguage('Braille')}>Braille</li>
                         </ul>
                     </div>
+                        </div>
+                        <ul className="dropdown-menu">
+                            <li className={`option ${outputLanguage === 'Español' ? 'active' : ''}`} onClick={() => selectOutputLanguage('Español')}>Español</li>
+                            <li className={`option ${outputLanguage === 'Braille' ? 'active' : ''}`} onClick={() => selectOutputLanguage('Braille')}>Braille</li>
+                        </ul>
+                    </div>
 
                 </div>
                 <div className='text-area'>
@@ -202,6 +226,7 @@ const Traductor = ({ option, inputText, setInputText }) => {
         </section>
     );
 };
+
 
 
 export default Traductor;

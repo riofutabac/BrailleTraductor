@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>app.services package &mdash; documentación de Braille-Traductor - 1.0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=4936afed"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/translations.js?v=efdbd0b9"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Braille-Traductor
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">app.services package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-app.services.ocr">app.services.ocr module</a></li>
+<li><a class="reference internal" href="#module-app.services.pdf_generator">app.services.pdf_generator module</a><ul>
+<li><a class="reference internal" href="#app.services.pdf_generator.convert_image_to_pdf"><code class="docutils literal notranslate"><span class="pre">convert_image_to_pdf()</span></code></a></li>
+<li><a class="reference internal" href="#app.services.pdf_generator.create_image_from_text"><code class="docutils literal notranslate"><span class="pre">create_image_from_text()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-app.services.translator">app.services.translator module</a><ul>
+<li><a class="reference internal" href="#app.services.translator.brailles"><code class="docutils literal notranslate"><span class="pre">brailles</span></code></a></li>
+<li><a class="reference internal" href="#app.services.translator.control_mayusculas_y_numeros"><code class="docutils literal notranslate"><span class="pre">control_mayusculas_y_numeros()</span></code></a></li>
+<li><a class="reference internal" href="#app.services.translator.secdict"><code class="docutils literal notranslate"><span class="pre">secdict</span></code></a></li>
+<li><a class="reference internal" href="#app.services.translator.tradBraille"><code class="docutils literal notranslate"><span class="pre">tradBraille()</span></code></a></li>
+<li><a class="reference internal" href="#app.services.translator.tradEsp"><code class="docutils literal notranslate"><span class="pre">tradEsp()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-app.services">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Braille-Traductor</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">app.services package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/docs/source/app.services.rst.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="app-services-package">
+<h1>app.services package<a class="headerlink" href="#app-services-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-app.services.ocr">
+<span id="app-services-ocr-module"></span><h2>app.services.ocr module<a class="headerlink" href="#module-app.services.ocr" title="Link to this heading"></a></h2>
+</section>
+<section id="module-app.services.pdf_generator">
+<span id="app-services-pdf-generator-module"></span><h2>app.services.pdf_generator module<a class="headerlink" href="#module-app.services.pdf_generator" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="app.services.pdf_generator.convert_image_to_pdf">
+<span class="sig-prename descclassname"><span class="pre">app.services.pdf_generator.</span></span><span class="sig-name descname"><span class="pre">convert_image_to_pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.services.pdf_generator.convert_image_to_pdf" title="Link to this definition"></a></dt>
+<dd><p>Convierte una imagen a un archivo PDF.</p>
+<p>&#64;param image_path: La ruta de la imagen a convertir.
+&#64;return: La ruta del archivo PDF generado.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.services.pdf_generator.create_image_from_text">
+<span class="sig-prename descclassname"><span class="pre">app.services.pdf_generator.</span></span><span class="sig-name descname"><span class="pre">create_image_from_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.services.pdf_generator.create_image_from_text" title="Link to this definition"></a></dt>
+<dd><p>Crea una imagen a partir del texto dado.</p>
+<p>&#64;param text: El texto para generar la imagen.
+&#64;return: La ruta de la imagen generada.</p>
+</dd></dl>
+
+</section>
+<section id="module-app.services.translator">
+<span id="app-services-translator-module"></span><h2>app.services.translator module<a class="headerlink" href="#module-app.services.translator" title="Link to this heading"></a></h2>
+<dl class="py data">
+<dt class="sig sig-object py" id="app.services.translator.brailles">
+<span class="sig-prename descclassname"><span class="pre">app.services.translator.</span></span><span class="sig-name descname"><span class="pre">brailles</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['⠷',</span> <span class="pre">'⠮',</span> <span class="pre">'⠌',</span> <span class="pre">'⠬',</span> <span class="pre">'⠾',</span> <span class="pre">'⠳',</span> <span class="pre">'\n',</span> <span class="pre">'</span> <span class="pre">',</span> <span class="pre">'⠖',</span> <span class="pre">'⠖',</span> <span class="pre">'⠦',</span> <span class="pre">'⠼',</span> <span class="pre">'⠖',</span> <span class="pre">'⠤',</span> <span class="pre">'⠦',</span> <span class="pre">'⠲',</span> <span class="pre">'⠦',</span> <span class="pre">'⠣',</span> <span class="pre">'⠜',</span> <span class="pre">'⠒',</span> <span class="pre">'⠆',</span> <span class="pre">'⠄',</span> <span class="pre">'⠶',</span> <span class="pre">'⠂',</span> <span class="pre">'⠢',</span> <span class="pre">'⠢',</span> <span class="pre">'⠈',</span> <span class="pre">'⠁',</span> <span class="pre">'⠃',</span> <span class="pre">'⠉',</span> <span class="pre">'⠙',</span> <span class="pre">'⠑',</span> <span class="pre">'⠋',</span> <span class="pre">'⠛',</span> <span class="pre">'⠓',</span> <span class="pre">'⠊',</span> <span class="pre">'⠚',</span> <span class="pre">'⠅',</span> <span class="pre">'⠇',</span> <span class="pre">'⠍',</span> <span class="pre">'⠝',</span> <span class="pre">'⠻',</span> <span class="pre">'⠕',</span> <span class="pre">'⠏',</span> <span class="pre">'⠟',</span> <span class="pre">'⠗',</span> <span class="pre">'⠎',</span> <span class="pre">'⠞',</span> <span class="pre">'⠥',</span> <span class="pre">'⠧',</span> <span class="pre">'⠺',</span> <span class="pre">'⠭',</span> <span class="pre">'⠽',</span> <span class="pre">'⠵',</span> <span class="pre">'⠣',</span> <span class="pre">'⠜',</span> <span class="pre">'⠘',</span> <span class="pre">'⠤']</span></em><a class="headerlink" href="#app.services.translator.brailles" title="Link to this definition"></a></dt>
+<dd><p># Diccionarios para mapear caracteres y Braille.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.services.translator.control_mayusculas_y_numeros">
+<span class="sig-prename descclassname"><span class="pre">app.services.translator.</span></span><span class="sig-name descname"><span class="pre">control_mayusculas_y_numeros</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.services.translator.control_mayusculas_y_numeros" title="Link to this definition"></a></dt>
+<dd><p>Controla la conversión de mayúsculas y números en la entrada de texto.</p>
+<p>&#64;param entry: El texto de entrada a procesar.
+&#64;return: El texto modificado con los controles de mayúsculas y números aplicados.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="app.services.translator.secdict">
+<span class="sig-prename descclassname"><span class="pre">app.services.translator.</span></span><span class="sig-name descname"><span class="pre">secdict</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'\n':</span> <span class="pre">'\n',</span> <span class="pre">'</span> <span class="pre">':</span> <span class="pre">'</span> <span class="pre">',</span> <span class="pre">'⠁':</span> <span class="pre">'a',</span> <span class="pre">'⠂':</span> <span class="pre">',',</span> <span class="pre">'⠃':</span> <span class="pre">'b',</span> <span class="pre">'⠄':</span> <span class="pre">'.',</span> <span class="pre">'⠅':</span> <span class="pre">'k',</span> <span class="pre">'⠆':</span> <span class="pre">';',</span> <span class="pre">'⠇':</span> <span class="pre">'l',</span> <span class="pre">'⠈':</span> <span class="pre">'&#64;',</span> <span class="pre">'⠉':</span> <span class="pre">'c',</span> <span class="pre">'⠊':</span> <span class="pre">'i',</span> <span class="pre">'⠋':</span> <span class="pre">'f',</span> <span class="pre">'⠌':</span> <span class="pre">'í',</span> <span class="pre">'⠍':</span> <span class="pre">'m',</span> <span class="pre">'⠎':</span> <span class="pre">'s',</span> <span class="pre">'⠏':</span> <span class="pre">'p',</span> <span class="pre">'⠑':</span> <span class="pre">'e',</span> <span class="pre">'⠒':</span> <span class="pre">':',</span> <span class="pre">'⠓':</span> <span class="pre">'h',</span> <span class="pre">'⠕':</span> <span class="pre">'o',</span> <span class="pre">'⠖':</span> <span class="pre">'+',</span> <span class="pre">'⠗':</span> <span class="pre">'r',</span> <span class="pre">'⠘':</span> <span class="pre">'^',</span> <span class="pre">'⠙':</span> <span class="pre">'d',</span> <span class="pre">'⠚':</span> <span class="pre">'j',</span> <span class="pre">'⠛':</span> <span class="pre">'g',</span> <span class="pre">'⠜':</span> <span class="pre">']',</span> <span class="pre">'⠝':</span> <span class="pre">'n',</span> <span class="pre">'⠞':</span> <span class="pre">'t',</span> <span class="pre">'⠟':</span> <span class="pre">'q',</span> <span class="pre">'⠢':</span> <span class="pre">'¿',</span> <span class="pre">'⠣':</span> <span class="pre">'[',</span> <span class="pre">'⠤':</span> <span class="pre">'_',</span> <span class="pre">'⠥':</span> <span class="pre">'u',</span> <span class="pre">'⠦':</span> <span class="pre">'&quot;',</span> <span class="pre">'⠧':</span> <span class="pre">'v',</span> <span class="pre">'⠬':</span> <span class="pre">'ó',</span> <span class="pre">'⠭':</span> <span class="pre">'x',</span> <span class="pre">'⠮':</span> <span class="pre">'é',</span> <span class="pre">'⠲':</span> <span class="pre">'÷',</span> <span class="pre">'⠳':</span> <span class="pre">'ü',</span> <span class="pre">'⠵':</span> <span class="pre">'z',</span> <span class="pre">'⠶':</span> <span class="pre">'=',</span> <span class="pre">'⠷':</span> <span class="pre">'á',</span> <span class="pre">'⠺':</span> <span class="pre">'w',</span> <span class="pre">'⠻':</span> <span class="pre">'ñ',</span> <span class="pre">'⠼':</span> <span class="pre">'#',</span> <span class="pre">'⠽':</span> <span class="pre">'y',</span> <span class="pre">'⠾':</span> <span class="pre">'ú'}</span></em><a class="headerlink" href="#app.services.translator.secdict" title="Link to this definition"></a></dt>
+<dd><p># Diccionarios de conversión numérica</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.services.translator.tradBraille">
+<span class="sig-prename descclassname"><span class="pre">app.services.translator.</span></span><span class="sig-name descname"><span class="pre">tradBraille</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.services.translator.tradBraille" title="Link to this definition"></a></dt>
+<dd><p>Traduce un texto en español a Braille.</p>
+<p>&#64;param entry: El texto en español a traducir.
+&#64;return: El texto traducido a Braille.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.services.translator.tradEsp">
+<span class="sig-prename descclassname"><span class="pre">app.services.translator.</span></span><span class="sig-name descname"><span class="pre">tradEsp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.services.translator.tradEsp" title="Link to this definition"></a></dt>
+<dd><p>Traduce un texto en Braille a español.</p>
+<p>&#64;param entry: El texto en Braille a traducir.
+&#64;return: El texto traducido a español.</p>
+</dd></dl>
+
+</section>
+<section id="module-app.services">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-app.services" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2024, TechForge.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
