@@ -1,8 +1,26 @@
 // Traductor.js
+// Traductor.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Traductor.css';
 
+/**
+ * Componente Traductor que maneja la lógica de traducción de texto entre Español y Braille.
+ * 
+ * @param {Object} props - Propiedades del componente.
+ * @param {string} props.option - Opción seleccionada ("Traducir texto" o "Archivo").
+ * @param {string} props.inputText - Texto de entrada para traducir.
+ * @param {Function} props.setInputText - Función para actualizar el texto de entrada.
+ * 
+ * @component
+ * @example
+ * const [inputText, setInputText] = useState('');
+ * const option = 'Traducir texto';
+ * 
+ * return (
+ *   <Traductor option={option} inputText={inputText} setInputText={setInputText} />
+ * )
+ */
 /**
  * Componente Traductor que maneja la lógica de traducción de texto entre Español y Braille.
  * 
@@ -73,7 +91,7 @@ const Traductor = ({ option, inputText, setInputText }) => {
         setLoading(true);
         try {
             const direction = inputLanguage === 'Español' && outputLanguage === 'Braille' ? 'Braille' : 'Español';
-            const response = await axios.get(`http://localhost:8000/api/translate/${text}/${direction}`);
+            const response = await axios.get(`http://localhost:8000/api/translate/${encodeURIComponent(text)}/${direction}`);
             setOutputText(response.data.translated_text);
         } catch (error) {
             console.error('Error translating text:', error);
@@ -132,6 +150,16 @@ const Traductor = ({ option, inputText, setInputText }) => {
                                 placeholder='Escribe algo...'
                                 value={inputText}
                                 onChange={handleInputChange}
+                                onKeyDown={(e) => {
+                                    if (inputLanguage === 'Braille') {
+                                        e.preventDefault();
+                                    }
+                                }}
+                                onClick={(e) => {
+                                    if (inputLanguage === 'Español' && charToBrailleMap.hasOwnProperty(e.click)) {
+                                        e.preventDefault();
+                                    }
+                                }}
                                 id="input-text"
                                 cols="30"
                                 rows="10"
@@ -150,7 +178,7 @@ const Traductor = ({ option, inputText, setInputText }) => {
             </div>
             <div className='center'></div>
             {option === 'Traducir texto' && (
-                <div className='swap-position' onClick={swapLanguagesAndTexts}>
+                <div className='swap-position' onClick={swapLanguagesAndTexts} title='Intercambiar lenguaje'>
                     <ion-icon name="swap-horizontal-outline"></ion-icon>
                 </div>
             )}
@@ -162,6 +190,12 @@ const Traductor = ({ option, inputText, setInputText }) => {
                             <ion-icon name="globe-outline"></ion-icon>
                             <span className='selected-language'>{outputLanguage}</span>
                             <ion-icon name="chevron-down-outline"></ion-icon>
+                        </div>
+                        <ul className="dropdown-menu">
+                            <li className={`option ${outputLanguage === 'Español' ? 'active' : ''}`} onClick={() => selectOutputLanguage('Español')}>Español</li>
+                            <li className={`option ${outputLanguage === 'Braille' ? 'active' : ''}`} onClick={() => selectOutputLanguage('Braille')}>Braille</li>
+                        </ul>
+                    </div>
                         </div>
                         <ul className="dropdown-menu">
                             <li className={`option ${outputLanguage === 'Español' ? 'active' : ''}`} onClick={() => selectOutputLanguage('Español')}>Español</li>
@@ -181,10 +215,10 @@ const Traductor = ({ option, inputText, setInputText }) => {
                     ></textarea>
                 </div>
                 <div className="output-actions">
-                    <button onClick={copyToClipboard} disabled={!outputText}>
+                    <button onClick={copyToClipboard} disabled={!outputText} title='Copiar al portapapeles'>
                         <ion-icon name="clipboard-outline"></ion-icon>
                     </button>
-                    <button onClick={downloadPDF} disabled={outputLanguage !== 'Braille' || !outputText}>
+                    <button onClick={downloadPDF} disabled={outputLanguage !== 'Braille' || !outputText} title='Descargar traducción en espejo'>
                         <ion-icon name="download-outline"></ion-icon>
                     </button>
                 </div>
@@ -192,6 +226,7 @@ const Traductor = ({ option, inputText, setInputText }) => {
         </section>
     );
 };
+
 
 
 export default Traductor;
