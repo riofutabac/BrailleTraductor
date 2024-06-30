@@ -1,4 +1,3 @@
-// Teclado.js
 import React, { useState } from 'react';
 import './Teclado.css';
 
@@ -18,16 +17,19 @@ const charToBrailleMap = {
  * @param {Object} props - Propiedades del componente.
  * @param {Function} props.setInputText - Función para actualizar el texto de entrada.
  * @param {string} props.inputText - Texto actual de entrada.
+ * @param {boolean} props.isDisabled - Indica si el teclado debe estar deshabilitado.
  * 
  * @component
  * @example
  * const [inputText, setInputText] = useState('');
  * 
  * return (
- *   <Teclado setInputText={setInputText} inputText={inputText} />
+ *   <Teclado setInputText={setInputText} inputText={inputText} isDisabled={false} />
  * )
  */
-export const Teclado = ({ setInputText, inputText }) => {
+export const Teclado = ({ setInputText, inputText, isDisabled }) => {
+
+
   const [inNumberSequence, setInNumberSequence] = useState(false);
 
   const keys = [
@@ -41,6 +43,8 @@ export const Teclado = ({ setInputText, inputText }) => {
   ];
 
   const handleKeyPress = (key) => {
+    if (isDisabled) return;
+
     let updatedText = inputText;
 
     if (key === 'borrar') {
@@ -79,7 +83,7 @@ export const Teclado = ({ setInputText, inputText }) => {
         {keys.map((row, rowIndex) => (
           <div key={rowIndex} className="keyboard-row">
             {row.map((key) => (
-              <button key={key} className="key" onClick={() => handleKeyPress(key)}>
+              <button key={key} className="key" onClick={() => handleKeyPress(key)} disabled={isDisabled}>
                 <div className="braille-symbol">
                   {key.match(/[0-9]/) ? '⠼' + charToBrailleMap[key.toLowerCase()] : charToBrailleMap[key.toLowerCase()] || key}
                 </div>

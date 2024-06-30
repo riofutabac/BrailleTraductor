@@ -2,24 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Traductor.css';
 
-/**
- * Componente Traductor que maneja la lógica de traducción de texto entre Español y Braille.
- * 
- * @param {Object} props - Propiedades del componente.
- * @param {string} props.option - Opción seleccionada ("Traducir texto" o "Archivo").
- * @param {string} props.inputText - Texto de entrada para traducir.
- * @param {Function} props.setInputText - Función para actualizar el texto de entrada.
- * 
- * @component
- * @example
- * const [inputText, setInputText] = useState('');
- * const option = 'Traducir texto';
- * 
- * return (
- *   <Traductor option={option} inputText={inputText} setInputText={setInputText} />
- * )
- */
-const Traductor = ({ option, inputText, setInputText }) => {
+const Traductor = ({ option, inputText, setInputText, onLanguageChange }) => {
     const [outputText, setOutputText] = useState('');
     const [inputDropdownActive, setInputDropdownActive] = useState(false);
     const [outputDropdownActive, setOutputDropdownActive] = useState(false);
@@ -38,11 +21,13 @@ const Traductor = ({ option, inputText, setInputText }) => {
     const selectInputLanguage = (language) => {
         setInputLanguage(language);
         setInputDropdownActive(false);
+        onLanguageChange(language, outputLanguage);
     };
 
     const selectOutputLanguage = (language) => {
         setOutputLanguage(language);
         setOutputDropdownActive(false);
+        onLanguageChange(inputLanguage, language);
     };
 
     const swapLanguagesAndTexts = () => {
@@ -54,6 +39,7 @@ const Traductor = ({ option, inputText, setInputText }) => {
 
         setOutputText(tempInputText);
         setOutputLanguage(tempInputLanguage);
+        onLanguageChange(outputLanguage, tempInputLanguage);
     };
 
     const handleInputChange = (e) => {

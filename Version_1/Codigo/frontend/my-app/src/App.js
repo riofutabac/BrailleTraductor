@@ -27,6 +27,19 @@ const App = () => {
   const [outputLanguage, setOutputLanguage] = useState('Braille');
   // Estado para el texto de entrada
   const [inputText, setInputText] = useState('');
+  // Estado para deshabilitar el teclado
+  const [isDisabled, setIsDisabled] = useState(false);
+
+console.log(inputLanguage);
+  // Efecto que actualiza el estado de deshabilitar el teclado
+
+  useEffect(() => {
+    if (inputLanguage === 'Braille') {
+      setIsDisabled(true);
+    } else {
+      setIsDisabled(false);
+    }
+  }, [inputLanguage]);
 
   // Efecto que actualiza la clase del cuerpo del documento según el modo oscuro
   useEffect(() => {
@@ -83,6 +96,7 @@ const App = () => {
         inputText={inputText}
         inputLanguage={inputLanguage}
         outputLanguage={outputLanguage}
+        isDisabled={!isDisabled}
       />
       <Footer />
     </div>
