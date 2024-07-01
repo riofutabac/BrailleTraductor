@@ -57,7 +57,7 @@ git clone https://github.com/riofutabac/BrailleTraductor.git
 
 2. En Terminal accede a la carpeta de la Aplicación:
    ```bash
-   cd Version1
+   cd Version2
    cd Codigo
    cd frontend
    cd my-app
@@ -81,7 +81,7 @@ git clone https://github.com/riofutabac/BrailleTraductor.git
 
 2. En una nueva terminal accede a la carpeta de la Aplicación:
    ```bash
-   cd Version1
+   cd Version2
    cd Codigo
    ```
 
