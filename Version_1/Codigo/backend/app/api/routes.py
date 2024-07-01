@@ -34,3 +34,14 @@ async def generate_pdf_route(text: str):
     image_path = create_image_from_text(text)
     pdf_path = convert_image_to_pdf(image_path)
     return FileResponse(pdf_path, media_type='application/pdf', filename=pdf_path)
+
+@router.get("/generate-image/{text}")
+async def generate_img_route(text: str):
+    """
+    Genera una imagen a partir del texto dado.
+
+    @param text: El texto para generar la imagen.
+    @return: Un FileResponse con la imagen generada.
+    """
+    image_path = create_image_from_text(text)
+    return FileResponse(image_path, media_type='image/png', filename=image_path)
