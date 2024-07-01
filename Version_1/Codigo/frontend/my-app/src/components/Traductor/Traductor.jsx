@@ -85,6 +85,23 @@ const Traductor = ({ option, inputText, setInputText, onLanguageChange }) => {
         }
     };
 
+    const downloadImage = async () => {
+        try {
+            const response = await fetch(`http://localhost:8000/api/generate-image/${encodeURIComponent(outputText)}`);
+            if (!response.ok) throw new Error('Error al generar la imagen');
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'translation.png'; // Puedes cambiar el nombre del archivo aquí
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+        } catch (error) {
+            console.error(error);
+        }
+};
+
     useEffect(() => {
         if (inputText) {
             translateText(inputText);
@@ -113,7 +130,8 @@ const Traductor = ({ option, inputText, setInputText, onLanguageChange }) => {
                 <div className='text-area'>
                     {option === 'Traducir texto' && (
                         <>
-                            <textarea
+                            <div className='textarea-wrapper'>
+                                <textarea
                                 placeholder='Escribe algo...'
                                 value={inputText}
                                 onChange={handleInputChange}
@@ -121,8 +139,15 @@ const Traductor = ({ option, inputText, setInputText, onLanguageChange }) => {
                                 id="input-text"
                                 cols="30"
                                 rows="10"
-                            ></textarea>
-                            <div className='chars'><span id='input-chars'>{inputText.length}</span>/5000 </div>
+                                ></textarea>
+                                {inputText && (
+                                    <button className="clear-text-button" onClick={() => setInputText('')} title='Limpiar cuadro de texto'>
+                                        <ion-icon name="close-circle"></ion-icon>
+                                    </button>
+                                )}
+                                <div className='chars'><span id='input-chars'>{inputText.length}</span>/5000 </div>
+                            </div>
+                            
                         </>
                     )}
                     {option === 'Archivo' && (
@@ -170,8 +195,11 @@ const Traductor = ({ option, inputText, setInputText, onLanguageChange }) => {
                     <button onClick={copyToClipboard} disabled={!outputText} title='Copiar al portapapeles'>
                         <ion-icon name="clipboard-outline"></ion-icon>
                     </button>
-                    <button onClick={downloadPDF} disabled={outputLanguage !== 'Braille' || !outputText} title='Descargar traducción en espejo'>
+                    <button onClick={downloadPDF} disabled={outputLanguage !== 'Braille' || !outputText} title='Descargar como PDF'>
                         <ion-icon name="download-outline"></ion-icon>
+                    </button>
+                    <button onClick={downloadImage} disabled={outputLanguage !== 'Braille' || !outputText} title='Descargar como imagen'>
+                        <ion-icon name="image-outline"></ion-icon>
                     </button>
                 </div>
             </div>
