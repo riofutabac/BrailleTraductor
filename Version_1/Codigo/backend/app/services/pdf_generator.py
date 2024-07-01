@@ -20,10 +20,6 @@ def create_image_from_text(text):
     
     draw.text((10, 10), text, font=font, fill='black')
     
-    
-    image = image.transpose(Image.FLIP_LEFT_RIGHT)
-    
-
     image_path = 'text_image.png'
     image.save(image_path)
     
@@ -37,6 +33,7 @@ def convert_image_to_pdf(image_path):
     @return: La ruta del archivo PDF generado.
     """
     image = Image.open(image_path)
+    image = image.transpose(Image.FLIP_LEFT_RIGHT)
     pdf_path = image_path.replace('.png', '.pdf')
     image.save(pdf_path, 'PDF', resolution=100.0)
     return pdf_path
