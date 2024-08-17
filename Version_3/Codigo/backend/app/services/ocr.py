@@ -1,0 +1,1 @@
+# Implementación futura del OCR
